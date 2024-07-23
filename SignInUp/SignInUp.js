@@ -32,3 +32,12 @@ registerBtn.addEventListener('click', () => {
     registerForm.style.opacity = 1;
 
 })
+
+
+
+
+
+
+
+
+
