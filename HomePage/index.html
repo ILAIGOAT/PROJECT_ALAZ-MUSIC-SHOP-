@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>HomePage</title>
-    <script src="indexscript.js"></script>
+    
     <link rel="stylesheet" href="styleindex.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 
@@ -77,17 +77,12 @@
             <button id="dismiss-popup-btn">
                 Dismiss
             </button>
-            <button id="sign-in-popup-btn">
+            <a href="/SignInUp/SignInUp.html"><button id="sign-in-popup-btn">
                 Sign In
-            </button>
+            </button></a>
         </div>
     </div>
 
-    <script>document.getElementById("open").addEventListener("click", function(){
-        document.getElementsByClassName("popup")[0].classList.add("active");
-    });
-    document.getElementById("dismiss-popup-btn").addEventListener("click", function(){
-        document.getElementsByClassName("popup")[0].classList.remove("active");
-    });</script>
+    <script src="indexscript.js"></script><!--JS SHOPPING CART SIGN IN POPUP-->
 </body>
 </html>
