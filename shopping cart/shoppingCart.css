@@ -141,7 +141,6 @@ body {
 }
 
 
-
 .minus-btn img {
   margin-bottom: 4px;
 }
@@ -191,4 +190,16 @@ input:focus {
     margin-right: 20px;
   }
 }
+/* Summary */
+.mb-0{
+  font-size: 18px;
+  font-weight: 350;
+}
+.card{
+  color: #5E6977;
+  font-size: 18px;
+  font-weight: 350;
+  top: 555px;
+}
+
 
