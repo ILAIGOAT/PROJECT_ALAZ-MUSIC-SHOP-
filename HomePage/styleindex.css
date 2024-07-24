@@ -12,7 +12,6 @@ body {
     font-family: "Work Sans", sans-serif;
     overflow-x: hidden;
     color: #42424A;
-    background: #e8e8e8;
 }
 header {
     display: flex;
@@ -71,7 +70,7 @@ header .submenu li a {
     align-items: center;
     height: 100vh;
 }
-header .logo a img {
+header ul li a img {
     width: 111px;
 }
 
@@ -150,7 +149,7 @@ header .logo a img {
 
 
 
-/*--------Test-------*/
+/*--------Test-------
 .toggle-switch {
     position: relative;
     width: 100px;
@@ -212,4 +211,4 @@ header .logo a img {
     -webkit-box-shadow: none;
     box-shadow: none;
   }
-
+*/
