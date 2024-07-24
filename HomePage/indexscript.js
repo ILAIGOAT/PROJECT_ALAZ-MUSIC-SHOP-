@@ -8,58 +8,17 @@ document.getElementById("dismiss-popup-btn").addEventListener("click", function(
 
 
 
-/////////////DARKMODELI(GHTMODEBUTTO Bn/////
-/*
-const body = document.querySelector('body');
-const btn = document.querySelector('.btn');
-const icon = document.querySelector('.btn__icon');
+function ChangeBackground()
+{
 
-//to save the dark mode use the object "local storage".
-
-//function that stores the value true if the dark mode is activated or false if it's not.
-function store(value){
-  localStorage.setItem('darkmode', value);
-}
-
-//function that indicates if the "darkmode" property exists. It loads the page as we had left it.
-function load(){
-  const darkmode = localStorage.getItem('darkmode');
-
-  //if the dark mode was never activated
-  if(!darkmode){
-    store(false);
-    icon.classList.add('bi bi-sun-fill');
-  } else if( darkmode == 'true'){ //if the dark mode is activated
-    body.classList.add('darkmode');
-    icon.classList.add('bi bi-moon-fill');
-  } else if(darkmode == 'false'){ //if the dark mode exists but is disabled
-    icon.classList.add('bi bi-sun-fill');
-  }
-}
-
-
-load();
-
-btn.addEventListener('click', () => {
-
-  body.classList.toggle('darkmode');
-  icon.classList.add('animated');
-
-  //save true or false
-  store(body.classList.contains('darkmode'));
-
-  if(body.classList.contains('darkmode')){
-    icon.classList.remove('bi bi-sun-fill');
-    icon.classList.add('bi bi-moon-fill');
-  }else{
-    icon.classList.remove('bi bi-moon-fill');
-    icon.classList.add('bi bi-sun-fill');
+  if(document.body.style.background = "#212121")
+  {
+      document.body.style.background = "#e8e8e8";
+      document.body.style.color = "#42424A";
   }
 
-  setTimeout( () => {
-    icon.classList.remove('animated');
-  }, 500)
-})
-*/
-//
+  
+    
+
+}
 
