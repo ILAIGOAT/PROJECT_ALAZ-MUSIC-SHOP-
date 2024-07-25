@@ -128,16 +128,7 @@ body {
     }
 }
 
-.edit-btn{
-    font-size: 1em;
-    transition: background-color 0.3s, transform 0.2s;
-    border: none;
-    border-radius: 5px;
-    padding: 10px 15px;
-    background-color: #a1a1a1;
+.edit-text{
+    
 }
 
-.edit-btn{
-    background-color: #657885;
-    transform: scale(1.05);
-}
