@@ -6,12 +6,13 @@
     padding: 0;
     box-sizing: border-box;
     outline: none;
-
+    
 }
 body {
-    font-family: "Work Sans", sans-serif;
+    
     overflow-x: hidden;
     color: #42424A;
+    
 }
 header {
     display: flex;
@@ -20,15 +21,22 @@ header {
     width: 100%;
     padding: 0 50px; /* Adjusted padding */
     border-bottom: 1px solid #dbdbdb;
+    
 }
 header ul {
     display: flex;
     align-items: center;
+    
 }
 header ul li {
     list-style: none;
-    margin: 0 20px; /* Adjusted margin */
+    margin: 0 50px; /* Adjusted margin */
     position: relative; /* Added for submenu positioning */
+    
+}
+header ul li:last-child{
+    margin-right: 0;
+
 }
 header ul li a {
     text-decoration: none;
@@ -36,7 +44,9 @@ header ul li a {
     padding: 22px 0;
     display: inline-block;
     transition: all 0.3s ease;
-    font-size: 18px; /* Adjusted font size */
+    font-size: 20px; /* Adjusted font size */
+    font-weight: bold;
+    font-family: 'Poppins', sans-serif;
 }
 header ul li a:hover {
     color: #ff8a00;
@@ -52,14 +62,32 @@ header .submenu {
     box-shadow: 0 20px 45px rgba(0, 0, 0, 0.2);
     z-index: 99;
 }
+header ul .submenu{
+    position: absolute;
+    width: 200px;
+    background-color: #ffffff;
+    box-shadow: 0 20px 45px #00000020;
+    margin-top: -50px;
+    opacity: 0;
+    z-index: -999;
+    transition: all ease 0.5s;
+}
 header ul li:hover .submenu {
     display: block; /* Show on hover */
+    z-index: 99;
+    opacity: 1;
+    margin-top: 0;
 }
 header .submenu li {
     margin: 0;
     width: 100%;
 }
 header .submenu li a {
+    padding: 15px 20px;
+    display: inline-block;
+    width: 100%;
+}
+header ul .submenu li a{
     padding: 15px 20px;
     display: inline-block;
     width: 100%;
@@ -72,6 +100,10 @@ header .submenu li a {
 }
 header ul li a img {
     width: 111px;
+}
+
+header #open i{
+    font-size: 27px;
 }
 
 /* Popup css*/
@@ -101,25 +133,28 @@ header ul li a img {
     transform: translate(-50%,-50%) scale(1);
     transition: transform 300ms cubic-bezier(o.18,0.89,0.43,1.19);
 }
-.popup .icon{
+.popup .icon i{
     margin: 0px 0px;
     width:50px;
     height: 50px;
     text-align: center;
     display: inline-block;
     line-height: 60px;
-    font-size: 30px;
+    font-size: 35px;
 
 }
+
 .popup .title{
     margin:0px 0px;
     font-size:30px;
     font-weight: 600;
+    font-family: 'Poppins',sans-serif;
 }
 .popup .description{
     color: #222;
     font-size: 15px;
     padding: 5px;
+    font-family: 'Poppins',sans-serif;
 }
 
 .popup .popup-btns{
