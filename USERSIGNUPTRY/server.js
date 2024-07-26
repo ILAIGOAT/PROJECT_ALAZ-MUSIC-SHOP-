@@ -3,7 +3,7 @@ const bodyParser = require('body-parser');
 const { addUser } = require('./userManagement');
 
 const app = express();
-const port = "the port we want (3000)";
+const port = 3000;
 
 app.use(bodyParser.json());
 app.use(express.static(__dirname)); // Serve static files from the current directory
