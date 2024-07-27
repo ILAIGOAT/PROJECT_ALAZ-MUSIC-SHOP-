@@ -1,4 +1,4 @@
-{
+  {
     "_id": "unique_user_id",
     "name": {
       "first": "John",
@@ -9,3 +9,5 @@
     "created_at": "2024-07-24T12:34:56Z",
     "updated_at": "2024-07-24T12:34:56Z"
   }
+
+

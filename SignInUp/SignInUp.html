@@ -62,15 +62,15 @@
                 </div>
                 <div class="form-inputs">
                     <div class="input-box">
-                        <input type="text" class="inputs input-field" placeholder="Email" required>
+                        <input type="text" class="inputs input-field" placeholder="Email" id="up-Email" required>
                         <i class="bi bi-envelope" id="icon"></i>
                     </div>
                     <div class="input-box">
-                        <input type="text" class="inputs input-field" placeholder="Username" required>
+                        <input type="text" class="inputs input-field" placeholder="Username" id="up-Username" required>
                         <i class="bi bi-person" id="icon"></i>
                     </div>
                     <div class="input-box">
-                        <input type="password" class="inputs input-field" placeholder="Password" required>
+                        <input type="password" class="inputs input-field" placeholder="Password" id="up-Password" required>
                         <i class="bi bi-file-lock2" id="icon"></i>
                     </div>
                     <div class="remember-me">
@@ -78,7 +78,7 @@
                         <label for="remember-me-check">Remember Me</label>
                     </div>
                     <div class="input-box">
-                        <button class="inputs submit-btn">
+                        <button class="inputs submit-btn" onclick="AddNewUser()">
                             <span>Sign Up</span>
                             <i class="bi bi-arrow-right"></i>
                         </button>
@@ -106,6 +106,7 @@
 
     
     <script src="SignInUp.js"></script>
+    <script src="mongodb.js"></script>
     <!-- 23:45Web Icons Import23:45-->
 
 </body>
