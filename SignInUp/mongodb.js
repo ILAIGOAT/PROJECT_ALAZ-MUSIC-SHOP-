@@ -34,7 +34,7 @@ function AddNewUser()
     
         const database = client.db("USERS");
         const People = database.collection("People");
-        const result = await People.insertOne(doc);
+        await People.insertOne(doc);
     
 
     }
