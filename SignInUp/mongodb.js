@@ -1,18 +1,18 @@
 const { MongoClient } = require('mongodb');
+const bcrypt = require('bcrypt');
 
-
-function AddNewUser()
+async function AddNewUser()
 {
     var useremail = document.getElementById("up-Email").value;
     var username = document.getElementById("up-Username").value;
     var pass = document.getElementById("up-Password").value;
 
-    async function run()
-    {
+    
+    
 
-        const uri = "mongodb+srv://MusicShopGroup:1234@musicshopdatabase.kbxcufo.mongodb.net/";
+        const uri = "mongodb+srv://MusicShopGroup:1234@musicshopdatabase.kbxcufo.mongodb.net/?retryWrites=true&w=majority&appName=MusicShopDataBase";
         const client = new MongoClient(uri);
-        const bcrypt = require('bcrypt');
+        
 
         await client.connect();
 
@@ -37,6 +37,6 @@ function AddNewUser()
         await People.insertOne(doc);
     
 
-    }
+    
     
 }
