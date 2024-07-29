@@ -1,16 +1,38 @@
-const { MongoClient } = require('mongodb');
-const bcrypt = require('bcrypt');
-
-async function AddNewUser()
+function AddNewUser()
 {
     var useremail = document.getElementById("up-Email").value;
     var username = document.getElementById("up-Username").value;
     var pass = document.getElementById("up-Password").value;
-
+    fetch('http://localhost:88/user/register',{
+        method:'POST',
+        headers:{
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+            username,
+            email:useremail,
+            password:pass
+        })
+    }).then(res => res.json()).then(res => {console.log(res)})
     
     
 
-        const uri = "mongodb+srv://MusicShopGroup:1234@musicshopdatabase.kbxcufo.mongodb.net/?retryWrites=true&w=majority&appName=MusicShopDataBase";
+       
+    
+
+    
+    
+}
+
+
+
+
+/*
+const { MongoClient } = require('mongodb');
+const bcrypt = require('bcrypt');
+
+
+const uri = "mongodb+srv://MusicShopGroup:1234@musicshopdatabase.kbxcufo.mongodb.net/?retryWrites=true&w=majority&appName=MusicShopDataBase";
         const client = new MongoClient(uri);
         
 
@@ -34,9 +56,4 @@ async function AddNewUser()
     
         const database = client.db("USERS");
         const People = database.collection("People");
-        await People.insertOne(doc);
-    
-
-    
-    
-}
+        await People.insertOne(doc);*/
