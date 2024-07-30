@@ -17,4 +17,5 @@ app.use('/user',User)
 mongoose.connection.once('open', () => {
     console.log('ServerStarted');
     app.listen(88);
+
 })
