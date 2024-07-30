@@ -1,9 +1,11 @@
 
 
-function AddNewUser() {//
+function AddNewUser() {
     var useremail = document.getElementById("up-Email").value;
     var username = document.getElementById("up-Username").value;
     var pass = document.getElementById("up-Password").value;
+
+    console.log("Sending registration request");
 
     fetch('http://localhost:88/user/register', {
         method: 'POST',
@@ -19,9 +21,10 @@ function AddNewUser() {//
     .then(res => res.json())
     .then(res => {
         if (res.error) {
+            console.log("Registration error:", res.error);
             alert(res.error);
         } else {
-            console.log(res);
+            console.log("Registration successful:", res);
             alert('User registered successfully');
         }
     })
@@ -31,9 +34,12 @@ function AddNewUser() {//
     });
 }
 
-function loginUser() {//
+
+function loginUser() {
     var useremail = document.getElementById("login-Email").value;
     var pass = document.getElementById("login-Pass").value;
+
+    console.log("Sending login request");
 
     fetch('http://localhost:88/user/login', {
         method: 'POST',
@@ -48,9 +54,10 @@ function loginUser() {//
     .then(res => res.json())
     .then(res => {
         if (res.error) {
+            console.log("Login error:", res.error);
             alert(res.error);
         } else {
-            console.log(res);
+            console.log("Login successful:", res);
             alert('Login successful');
         }
     })
