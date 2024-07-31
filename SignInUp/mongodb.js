@@ -23,15 +23,12 @@ function AddNewUser() {
         if (res.error) {
             console.log("Registration error:", res.error);
             alert(res.error);
-        } else {
+        } if(res.message) {
             console.log("Registration successful:", res);
             alert('User registered successfully');
         }
-    })
-    .catch(error => {
-        console.error('Error:', error);
-        alert('An error occurred while registering the user');
     });
+    
 }
 
 
@@ -56,15 +53,13 @@ function loginUser() {
         if (res.error) {
             console.log("Login error:", res.error);
             alert(res.error);
-        } else {
+        } if (res.message) {
             console.log("Login successful:", res);
             alert('Login successful');
+            window.location.href = "https://www.kley-zemer.co.il/";
         }
-    })
-    .catch(error => {
-        console.error('Error:', error);
-        alert('An error occurred while logging in');
     });
+    
 }
 
 
