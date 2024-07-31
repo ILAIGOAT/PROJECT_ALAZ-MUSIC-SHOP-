@@ -20,12 +20,12 @@ function AddNewUser() {
     })
     .then(res => res.json())
     .then(res => {
-        if (res.error) {
-            console.log("Registration error:", res.error);
+        if(res.error) {
             alert(res.error);
+            console.log("Registration error:", res.error);
         } if(res.message) {
-            console.log("Registration successful:", res);
             alert('User registered successfully');
+            console.log("Registration successful:", res.message);
         }
     });
     
@@ -50,15 +50,15 @@ function loginUser() {
     })
     .then(res => res.json())
     .then(res => {
-        if (res.error) {
-            console.log("Login error:", res.error);
+        if(res.error) {
             alert(res.error);
-        } if (res.message) {
-            console.log("Login successful:", res);
+            console.log("Login error:", res.error);
+        } if(res.message) {
             alert('Login successful');
+            console.log("Login successful:", res.message);
             window.location.href = "https://www.kley-zemer.co.il/";
         }
-    })
+    });
     
 }
 
