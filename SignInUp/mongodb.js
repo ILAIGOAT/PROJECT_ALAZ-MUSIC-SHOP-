@@ -58,7 +58,7 @@ function loginUser() {
             alert('Login successful');
             window.location.href = "https://www.kley-zemer.co.il/";
         }
-    });
+    })
     
 }
 
