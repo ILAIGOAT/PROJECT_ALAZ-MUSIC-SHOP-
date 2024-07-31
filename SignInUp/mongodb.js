@@ -20,6 +20,7 @@ function AddNewUser() {
     })
     .then(res => res.json())
     .then(res => {
+        console.log(res);
         if(res.error) {
             alert(res.error);
             console.log("Registration error:", res.error);
