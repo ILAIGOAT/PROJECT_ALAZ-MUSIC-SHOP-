@@ -1,3 +1,6 @@
+// let IsSomeOneConnected = false;
+// const ShowConnectedUSer = require("/HomePage/indexscript.js");
+// module.exports = IsSomeOneConnected;
 
 
 function AddNewUser() {
@@ -29,7 +32,9 @@ function AddNewUser() {
             console.log("Registration successful:", res.message);
         }
     });
-    
+    document.getElementById("up-Email").value = "";
+    document.getElementById("up-Username").value = "";
+    document.getElementById("up-Password").value = "";
 }
 
 
@@ -57,10 +62,12 @@ function loginUser() {
         } if(res.message) {
             alert('Login successful');
             console.log("Login successful:", res.message);
-            window.location.href = "https://www.kley-zemer.co.il/";
+            window.location.href = "/HomePage/index.html";
         }
     });
-    
+
+    // IsSomeOneConnected = true;
+    // ShowConnectedUser();
 }
 
 
