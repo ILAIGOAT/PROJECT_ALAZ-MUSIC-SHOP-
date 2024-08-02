@@ -1,18 +1,14 @@
 
 
-// let IsSomeOneConnected = require('/SignInUp/mongodb.js');
-
-
-/*function ShowConnectedUser()
+function ShowConnectedUser(state)
 {
-  const isoc = "notConected";
-  if(IsSomeOneConnected)
-     isoc = "connected";
-
-  document.getElementById("IfUserConnected").innerText = isoc;
-  document.getElementById("IfUserConnected").style.display = "unset";
+  if(state)
+    document.getElementById("IfUserConnected").innerText = "connected";
+  
 }
-module.exports = ShowConnectedUser;*/
+
+
+export {ShowConnectedUser};
 
 
 document.getElementById("open").addEventListener("click", function(){

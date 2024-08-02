@@ -1,6 +1,4 @@
-// let IsSomeOneConnected = false;
-// const ShowConnectedUSer = require("/HomePage/indexscript.js");
-// module.exports = IsSomeOneConnected;
+import { ShowConnectedUser } from "../HomePage/indexscript.js";
 
 
 function AddNewUser() {
@@ -66,8 +64,7 @@ function loginUser() {
         }
     });
 
-    // IsSomeOneConnected = true;
-    // ShowConnectedUser();
+    ShowConnectedUser(true);
 }
 
 
