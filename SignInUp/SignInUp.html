@@ -106,9 +106,14 @@
 
     
     <script src="SignInUp.js"></script>
-    <script  type="module"  src="mongodb.js"></script>
-    <!-- 23:45Web Icons Import23:45-->
-
+    <script src="mongodb.js"></script><!--thechange that happened-->
+    
+    <!--Connection of the functions in mongodb.js with ES6 modules to execute the functions-->
+    <!--<script type="module" src="mongodb.js"></script>
+    <script type="module">
+        import { AddNewUser, loginUser } from './mongodb.js';
+        window.AddNewUser = AddNewUser;
+        window.loginUser = loginUser;
+    </script>--> <!--TOFIX AFTER and make it easer to read and understand + taking off unnecessary things-->
 </body>
-
 </html>

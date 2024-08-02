@@ -1,7 +1,7 @@
-import { ShowConnectedUser } from "../HomePage/indexscript.js";
+// import { ShowConnectedUser } from "../HomePage/HelperFunctions.js";
 
 
-function AddNewUser() {
+/*export*/ function AddNewUser() {
     var useremail = document.getElementById("up-Email").value;
     var username = document.getElementById("up-Username").value;
     var pass = document.getElementById("up-Password").value;
@@ -36,7 +36,7 @@ function AddNewUser() {
 }
 
 
-function loginUser() {
+/*export*/ function loginUser() {
     var useremail = document.getElementById("login-Email").value;
     var pass = document.getElementById("login-Pass").value;
 
@@ -61,10 +61,12 @@ function loginUser() {
             alert('Login successful');
             console.log("Login successful:", res.message);
             window.location.href = "/HomePage/index.html";
+            localStorage.setItem('userConnected' , 'true');//thechange that happened//change to session storage if there will be bugs 'Yanivs kinda idea'.
+            //ShowConnectedUser(true);
         }
     });
 
-    ShowConnectedUser(true);
+    
 }
 
 
