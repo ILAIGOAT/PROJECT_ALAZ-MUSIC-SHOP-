@@ -1,5 +1,5 @@
 
-if(localStorage.getItem('userConnected') === 'false'){
+if(!(sessionStorage.getItem('userConnected') === 'true')){
   document.getElementById("open").href = "#";
   document.getElementById("open").addEventListener("click", function(){
       document.getElementsByClassName("popup")[0].classList.add("active");

@@ -14,9 +14,9 @@
                 <img src="https://via.placeholder.com/400x400" alt="Item Image">
             </div>
             <div class="item-details">
-                <DIV>
-                    <input type="search" class="edit-text">
-                </DIV>
+                <div>
+                    <p>Item Name</p>
+                </div>
                 <div class="item-rating">
                     <span class="star">&#9734;</span>
                     <span class="star">&#9734;</span>
@@ -24,14 +24,24 @@
                     <span class="star">&#9734;</span>
                     <span class="star">&#9734;</span>
                     <span class="reviews">(0 reviews)</span>
-                    
+            
                 </div>
                 <div>
                 <p class="item-description">
-                    <input type="search" class="edit-text">
+                    Item description
                 </p>
                 
                 </div>
+<div>
+    <div class="color-option">
+        <span class="color">Color:</span>
+        <div class="circles">
+          <span class="circle blue active"  id="blue"></span>
+          <span class="circle pink " id="pink"></span>
+          <span class="circle yellow " id="yellow"></span>
+        </div>
+      </div>
+</div>
                 <div class="item-price">
                     $49.99
                 </div>
@@ -41,5 +51,18 @@
     </div>
 
     <script src="itemtest.js"></script>
+
+    <script>
+        let circle = document.querySelector(".color-option");//for the colors
+        circle.addEventListener("click", (e)=>{
+          let target = e.target;
+          if(target.classList.contains("circle")){
+            circle.querySelector(".active").classList.remove("active");
+            target.classList.add("active");
+            document.querySelector(".main-images .active").classList.remove("active");
+            document.querySelector(`.main-images .${target.id}`).classList.add("active");
+          }
+        });
+       </script>
 </body>
 </html>

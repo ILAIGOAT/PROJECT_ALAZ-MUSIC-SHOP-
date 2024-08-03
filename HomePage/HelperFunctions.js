@@ -1,5 +1,3 @@
-
-
 export function ShowConnectedUser(state)
 {
     console.log("Calling ShowConnectedUser");
@@ -12,25 +10,29 @@ export function ShowConnectedUser(state)
     if(!state)
     {
         console.log("Element found but the state is false, setting innerHTML");
-        userStatusElement.innerHTML = "not connected";
+        userStatusElement.innerHTML = "Hello &#128400;";
+        document.getElementById("inupbutton").style.display = "";
     }
         
     if(state) {
-        userStatusElement.innerHTML = "Hello " + localStorage.getItem('ConnectedUsername') + "!";
+        userStatusElement.innerHTML = "Hello " + sessionStorage.getItem('ConnectedUsername') + "&#128400;";//change to session storage if there will be bugs 'Yanivs kinda idea'.
         console.log("Element found, setting innerHTML");
-        localStorage.setItem('userConnected' , 'false');//change to session storage if there will be bugs 'Yanivs kinda idea'.
+        document.getElementById("inupbutton").style.display = "none"; 
     }
   
 }
 
 
-export function initializeUserStatus() {
-    const state = localStorage.getItem('userConnected') === 'true';//change to session storage if there will be bugs 'Yanivs kinda idea'.
+export function initializeUserStatus() 
+{
+    const state = sessionStorage.getItem('userConnected') === 'true';//change to session storage if there will be bugs 'Yanivs kinda idea'.
     ShowConnectedUser(state);
 }
 
+
 export function Logout()
 {
-    localStorage.setItem('userConnected' , 'false');//change to session storage if there will be bugs 'Yanivs kinda idea'.
+    document.getElementById("open").href = "#";
+    sessionStorage.setItem('userConnected' , 'false');//change to session storage if there will be bugs 'Yanivs kinda idea'.
     initializeUserStatus();
 }
