@@ -2,7 +2,7 @@ const express = require('express');
 const User = require('../modeltest/test');
 var router = express.Router();
 const bcrypt = require('bcrypt');
-//fix an error ocured during registeration
+
 
 
 router.post('/register', async (req, res) => {

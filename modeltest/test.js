@@ -1,5 +1,6 @@
 const mongoose = require('mongoose')/*itamar reem do on terminal 'npm i' command to collect the packages*/
 const Schema = mongoose.Schema
+
 const User = new Schema(
     {
         username:{
@@ -21,8 +22,13 @@ const User = new Schema(
         UpdatedAT:{
             type:Date,
             default:Date.now
-        }
-
+        },
+        cart:[
+            {
+                type: Schema.Types.ObjectId,
+                ref: 'Item'
+            }
+        ]       
     }
 ) 
 
