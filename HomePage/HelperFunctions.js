@@ -16,7 +16,7 @@ export function ShowConnectedUser(state)
     }
         
     if(state) {
-        userStatusElement.innerHTML = "connected";
+        userStatusElement.innerHTML = "Hello " + localStorage.getItem('ConnectedUsername') + "!";
         console.log("Element found, setting innerHTML");
         localStorage.setItem('userConnected' , 'false');//change to session storage if there will be bugs 'Yanivs kinda idea'.
     }

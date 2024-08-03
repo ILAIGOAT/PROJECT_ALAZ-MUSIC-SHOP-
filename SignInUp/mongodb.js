@@ -39,7 +39,7 @@
 /*export*/ function loginUser() {
     var useremail = document.getElementById("login-Email").value;
     var pass = document.getElementById("login-Pass").value;
-
+    
     console.log("Sending login request");
 
     fetch('http://localhost:88/user/login', {
@@ -62,6 +62,7 @@
             console.log("Login successful:", res.message);
             window.location.href = "/HomePage/index.html";
             localStorage.setItem('userConnected' , 'true');//thechange that happened//change to session storage if there will be bugs 'Yanivs kinda idea'.
+            localStorage.setItem('ConnectedUsername',(res.message).substring(20));
             //ShowConnectedUser(true);
         }
     });
