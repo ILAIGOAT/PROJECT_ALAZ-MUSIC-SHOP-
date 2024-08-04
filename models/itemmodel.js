@@ -2,23 +2,23 @@ const mongoose = require('mongoose')/*itamar reem do on terminal 'npm i' command
 const Schema = mongoose.Schema
 const Item = new Schema(
     {
-        itemname:{
+        name:{
             type:String,
             required: true
         },
-        itemscript:{
+        script:{
             type:String,
             required: false
         },
-        itemcolor:{
+        color:{
             type:String,
             required: true
         },
-        itemprice:{
+        price:{
             type: mongoose.Types.Decimal128,
             required: true
         },
-        itemimg:{
+        img:{
             type:String,
             default: "https://via.placeholder.com/400x400"
         }

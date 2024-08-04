@@ -2,8 +2,8 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const cors = require('cors')
 const mongoose = require('mongoose');
-mongoose.connect('mongodb://0.0.0.0:27017/MusicShop');
-const User = require('../routertest/testrouter');
+mongoose.connect('mongodb+srv://MSalaz:NbfQnrVeMrM1fUAd@musicshop.0dbqnnb.mongodb.net/MusicShopDataBase');
+const User = require('../routersformodels/userrouter');
 const Item = require('../routersformodels/itemrouter');
 
 

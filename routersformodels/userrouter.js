@@ -1,5 +1,5 @@
 const express = require('express');
-const User = require('../modeltest/test');
+const User = require('../models/usermodel');
 var router = express.Router();
 const bcrypt = require('bcrypt');
 
@@ -65,32 +65,3 @@ router.post('/login', async (req, res) => {
 
 
 module.exports = router;
-
-
-/*router.post('/register', async (req,res) => {
-const { username , email , password} = req.body;
-const saltrounds = 10;
-var hashedpassword = await bcrypt.hash(password,10);
-
-const userExist = await User.findOne({ email: email });
-        if (userExist)
-        {
-             return res
-          .status(422)
-          .json({ error: "Email already exists" });
-        }
-
-const user = new User({
-    username,
-    email,
-    password: hashedpassword,
-
-})
-await user.save();
-res.status(201).json(user);
-})
-
-
-
-
-module.exports = router;*/
