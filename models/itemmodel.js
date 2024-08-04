@@ -18,6 +18,10 @@ const Item = new Schema(
             type: mongoose.Types.Decimal128,
             required: true
         },
+        instrumenttype:{
+            type: String,
+            required: true
+        },
         img:{
             type:String,
             default: "https://via.placeholder.com/400x400"
