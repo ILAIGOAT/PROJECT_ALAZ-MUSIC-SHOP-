@@ -1,5 +1,6 @@
 function ChangeUserimg()
 {
+
     var pfp = document.getElementById("imageUrl").value;
     var email = sessionStorage.getItem('ConnectedEmail');
 
@@ -23,6 +24,8 @@ function ChangeUserimg()
         } if(res.message) {
             alert('Change successful');
             console.log("Change successful:", res.message);
+            sessionStorage.setItem('ConnectedUserimg',pfp);
+            window.location.href = "/HomePage/index.html";
         }
     });
 }
