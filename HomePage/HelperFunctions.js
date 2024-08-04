@@ -17,6 +17,7 @@ export function ShowConnectedUser(state)
     if(state) {
         userStatusElement.innerHTML = "Hello " + sessionStorage.getItem('ConnectedUsername') + "&#128400;";//change to session storage if there will be bugs 'Yanivs kinda idea'.
         console.log("Element found, setting innerHTML");
+        console.log("pfp changed in main");
         document.getElementById("inupbutton").style.display = "none"; 
     }
   
@@ -25,6 +26,7 @@ export function ShowConnectedUser(state)
 
 export function initializeUserStatus() 
 {
+    console.log("happened");
     const state = sessionStorage.getItem('userConnected') === 'true';//change to session storage if there will be bugs 'Yanivs kinda idea'.
     ShowConnectedUser(state);
 }
@@ -33,6 +35,8 @@ export function initializeUserStatus()
 export function Logout()
 {
     document.getElementById("open").href = "#";
+    document.getElementById("settings").href = "#";
+    sessionStorage.setItem('ConnectedUserimg',"https://roseanddaisyfoundation.org/media/images/large/pngkey.complaceholderpng3499617.png");
     sessionStorage.setItem('userConnected' , 'false');//change to session storage if there will be bugs 'Yanivs kinda idea'.
     initializeUserStatus();
 }

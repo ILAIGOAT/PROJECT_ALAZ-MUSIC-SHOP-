@@ -54,14 +54,35 @@ router.post('/login', async (req, res) => {
             return res.status(400).json({ error: "Invalid credentials" });
         }
         const username = user.username;
+        const pfp = user.pfp;
         console.log("Login successful for email:", email);
-        return res.status(200).json({ message: "Login successful for " + username });
+        return res.status(200).json({ message: "Login successful for " + username, img: pfp});
     } catch (error) {
         console.error("Error during login:", error);
         return res.status(500).json({ error: 'Server error' });
     }
 });
 
+
+router.post('/changepfp', async (req,res) => {
+    const { email, pfp } = req.body;
+
+    console.log("Recieved pfp change request:", req.body);
+
+    try{
+        const user = await User.findOneAndUpdate({email},{$set: {pfp}});
+        if(!user){
+            console.log("User not found:", email);
+            return res.status(400).json({ error: "User not found" });
+        }
+
+        console.log("Pfp Changed successful for email:", email);
+        return res.status(200).json({ message: "Pfp Changed successful"});
+    } catch(error){
+        console.error("Error during login:", error);
+        return res.status(500).json({ error: 'Server error'});
+    }
+})
 
 
 module.exports = router;

@@ -19,6 +19,10 @@ const User = new Schema(
             type: Boolean,
             default: false
         },
+        pfp:{
+            type: String,
+            default: "https://roseanddaisyfoundation.org/media/images/large/pngkey.complaceholderpng3499617.png"
+        },
         CreatedAT:{
             type:Date,
             default:Date.now
