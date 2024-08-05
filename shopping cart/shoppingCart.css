@@ -214,4 +214,6 @@ input:focus {
   top: 555px;
 }
 
-
+#items{
+  list-style-type: none;
+}

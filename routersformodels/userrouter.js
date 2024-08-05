@@ -1,5 +1,6 @@
 const express = require('express');
 const User = require('../models/usermodel');
+const Item = require('../models/itemmodel.js')
 var router = express.Router();
 const bcrypt = require('bcrypt');
 
@@ -83,7 +84,7 @@ router.post('/changepfp', async (req,res) => {
         console.error("Error during login:", error);
         return res.status(500).json({ error: 'Server error'});
     }
-})
+});
 
 router.post('/changeusername', async (req,res) => {
     const { email, username } = req.body;
@@ -182,4 +183,62 @@ router.post('/deleteuseraccount', async (req,res) => {
         return res.status(500).json({ error: 'Server error'});
     }
 })
+
+router.post('/getCartItems', async (req, res) => {
+    const { email } = req.body;
+    let names = '';
+    let prices = '';
+    let imgs = '';
+    let amounts = '';
+
+    console.log("Received get cart request with body:", req.body);
+
+    try {
+        const user = await User.findOne({ email });
+        if (!user) {
+            console.log("User not found with email:", email);
+            return res.status(400).json({ error: "User not found" });
+        }
+
+        console.log("User found:", user);
+
+        for (let i = 0; i < user.cart.length; i++) {
+            const itemId = user.cart[i];
+            console.log(`Looking for item with ID: ${itemId}`);
+            const item = await Item.findOne({ _id: itemId });
+            if (item) {
+                console.log(`Item found: ${item}`);
+                names += `~${item.name}`;
+                prices += `~${item.price}`;
+                imgs += ` ${item.img}`;
+            } else {
+                console.log(`Item not found for ID: ${itemId}`);
+            }
+        }
+
+        console.log("Completed item lookup");
+
+        for (let i = 0; i < user.cartAmounts.length; i++) {
+            amounts += `~${user.cartAmounts[i]}`;
+        }
+
+        console.log("Cart amounts:", amounts);
+
+        const response = {
+            msg: "Sending cart items",
+            names,
+            prices,
+            imgs,
+            amounts
+        };
+
+        console.log("Sending response:", response);
+
+        return res.status(200).json(response);
+    } catch (error) {
+        console.error("Error during getCartItems:", error);
+        return res.status(500).json({ error: 'Server error' });
+    }
+});
+
 module.exports = router;

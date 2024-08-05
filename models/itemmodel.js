@@ -25,11 +25,6 @@ const Item = new Schema(
         img:{
             type:String,
             default: "https://via.placeholder.com/400x400"
-        },
-        amount:{
-            type: Number,
-            required: false
-
         }
     }
 )
