@@ -19,6 +19,12 @@ export function ShowConnectedUser(state)
         console.log("Element found, setting innerHTML");
         document.getElementById("btn").src = sessionStorage.getItem('ConnectedUserimg');
         console.log("pfp changed in main");
+        if(sessionStorage.getItem('IfUserAdmin') === 'true')
+            document.getElementById("role").innerHTML = "Admin";
+        else
+            document.getElementById("role").innerHTML = "User";
+
+        document.getElementById("name").innerHTML = sessionStorage.getItem('ConnectedUsername');
         document.getElementById("inupbutton").style.display = "none"; 
     }
   
@@ -40,6 +46,8 @@ export function Logout()
     //sessionStorage.setItem('ConnectedUserimg',"https://roseanddaisyfoundation.org/media/images/large/pngkey.complaceholderpng3499617.png");
     document.getElementById("btn").src = "https://roseanddaisyfoundation.org/media/images/large/pngkey.complaceholderpng3499617.png"
     sessionStorage.setItem('userConnected' , 'false');//change to session storage if there will be bugs 'Yanivs kinda idea'.
+    document.getElementById("role").innerHTML = "Admin/User";
+    document.getElementById("name").innerHTML = "Guest";
     initializeUserStatus();
     location.reload();
 }

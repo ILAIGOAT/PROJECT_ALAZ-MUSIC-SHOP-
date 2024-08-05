@@ -65,6 +65,7 @@
             sessionStorage.setItem('ConnectedEmail',useremail);
             sessionStorage.setItem('ConnectedUsername',(res.message).substring(20));//saving the username of the logined user. takes the index 20 till the end of the message string to get the username u can see/line 56 and 58 in routertest.  
             sessionStorage.setItem('ConnectedUserimg',res.img);
+            sessionStorage.setItem('IfUserAdmin',res.admin);
             //ShowConnectedUser(true);
         }
     });

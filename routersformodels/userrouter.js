@@ -55,8 +55,9 @@ router.post('/login', async (req, res) => {
         }
         const username = user.username;
         const pfp = user.pfp;
+        const ifadmin = user.admin;
         console.log("Login successful for email:", email);
-        return res.status(200).json({ message: "Login successful for " + username, img: pfp});
+        return res.status(200).json({ message: "Login successful for " + username, img: pfp, admin: ifadmin});
     } catch (error) {
         console.error("Error during login:", error);
         return res.status(500).json({ error: 'Server error' });

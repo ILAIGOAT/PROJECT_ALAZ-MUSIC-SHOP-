@@ -86,5 +86,5 @@ function UpdatePrice()
     console.log("Price in UpdatePrice:", price); // Debugging line
     let totalPrice = price * quantity;
     console.log("Total Price:", totalPrice); // Debugging line
-    document.getElementsByClassName("item-price")[0].innerHTML = "$" + totalPrice.toFixed(2);
+    document.getElementsByClassName("item-price")[0].innerHTML = "$" + totalPrice;
 }
