@@ -1,19 +1,19 @@
-function ChangeUserimg()
+function ChangeUserpass()
 {
 
-    var pfp = document.getElementById("imageUrl").value;
+    var newpassword = document.getElementById("password").value;
     var email = sessionStorage.getItem('ConnectedEmail');
 
-    console.log("Sending pfp Change request");
+    console.log("Sending Password Change request");
     
-    fetch('http://localhost:88/user/changepfp', {
+    fetch('http://localhost:88/user/changeuserpass', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
         },
         body: JSON.stringify({
             email,
-            pfp
+            password: newpassword
         })
     })
     .then(res => res.json())
@@ -24,8 +24,7 @@ function ChangeUserimg()
         } if(res.message) {
             alert('Change successful');
             console.log("Change successful:", res.message);
-            sessionStorage.setItem('ConnectedUserimg',pfp);
-            window.location.href = "/HomePage/index.html";
+            window.location.href = "/SignInUp/SignInUp.html";
         }
     });
 }

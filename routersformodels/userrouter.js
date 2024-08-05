@@ -85,5 +85,101 @@ router.post('/changepfp', async (req,res) => {
     }
 })
 
+router.post('/changeusername', async (req,res) => {
+    const { email, username } = req.body;
 
+    console.log("Recieved username change request:", req.body);
+
+    try{
+        const user = await User.findOneAndUpdate({email},{$set: {username}});
+        if(!user){
+            console.log("User not found:", email);
+            return res.status(400).json({ error: "User not found" });
+        }
+
+        console.log("username Changed successful for email:", email);
+        return res.status(200).json({ message: "username Changed successful"});
+    } catch(error){
+        console.error("Error during login:", error);
+        return res.status(500).json({ error: 'Server error'});
+    }
+})
+
+router.post('/aprovepasswordchange', async (req,res) => {
+    const { email, password } = req.body;
+
+    console.log("Recieved Password change request:", req.body);
+
+    try{
+        const user = await User.findOne({ email });
+        if(!user){
+            console.log("User not found:", email);
+            return res.status(400).json({ error: "User not found" });
+        }
+
+        const ismatch = await bcrypt.compare(password, user.password);
+        if(!ismatch)
+        {
+            console.log("Password dont match:", email);
+            return res.status(400).json({ error: "The Password That Was Entered Doesn't Match The User's Active Password" });
+        }
+        
+        console.log("Password Change Aproved for email:", email);
+        return res.status(200).json({ message: "Password Change Aproved"});
+    } catch(error){
+        console.error("Error during login:", error);
+        return res.status(500).json({ error: 'Server error'});
+    }
+})
+
+
+router.post('/changeuserpass', async (req,res) => {
+    const { email, password } = req.body;
+
+    console.log("Recieved Password change request:", req.body);
+
+    try{
+        const hashedPass = await bcrypt.hash(password, 10);
+        const user = await User.findOneAndUpdate({email},{$set: {password:hashedPass}});
+        if(!user){
+            console.log("User not found:", email);
+            return res.status(400).json({ error: "User not found" });
+        }
+
+        console.log("password Changed successful for email:", email);
+        return res.status(200).json({ message: "password Changed successful"});
+    } catch(error){
+        console.error("Error during login:", error);
+        return res.status(500).json({ error: 'Server error'});
+    }
+})
+
+
+router.post('/deleteuseraccount', async (req,res) => {
+    const { email, password, enteredemail } = req.body;
+
+    console.log("Recieved Delete Account request:", req.body);
+
+    try{
+        const user = await User.findOne({ email });
+        if(!user){
+            console.log("User not found:", email);
+            return res.status(400).json({ error: "User not found" });
+        }
+
+        const match = await (bcrypt.compare(password, user.password)) && (user.email === enteredemail);
+        if(!match)
+        {
+            console.log("Password or email dont match the connected user:", email);
+            return res.status(400).json({ error: "The Password Or The Email That Was Entered Doesn't Match The Connected User's"});
+        }
+
+        await User.deleteOne({email});
+        console.log("Account Deleted for email:", email);
+        return res.status(200).json({ message: "User Account Deleted"});
+    } catch(error){
+        console.error("Error during login:", error);
+        return res.status(500).json({ error: 'Server error'});
+    }
+})
 module.exports = router;

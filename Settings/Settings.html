@@ -3,12 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Image URL Changer</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <title>Settings</title>
     <style>
         body {
-            font-family: 'Poppins', sans-serif;
-            background-color: #ffffff;
+            background-color: white;
+            font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
             display: flex;
@@ -17,56 +16,61 @@
             height: 100vh;
         }
         .container {
-            text-align: center;
-            max-width: 400px;
-            width: 100%;
+            width: 400px;
             padding: 20px;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
             border-radius: 10px;
-            background-color: #f9f9f9;
+            text-align: center;
+            animation: fadeIn 1s ease-in-out;
         }
-        .container h1 {
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        h1 {
+            text-align: left;
             font-size: 24px;
-            margin-bottom: 20px;
             color: #333;
         }
-        .container input {
-            width: 90%;
+        button {
+            width: 100%;
             padding: 10px;
-            margin-bottom: 20px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            font-size: 16px;
-        }
-        .container button {
-            width: 50%;
-            padding: 10px;
+            margin: 10px 0;
             border: none;
             border-radius: 5px;
-            background-color: #007BFF;
-            color: #fff;
             font-size: 16px;
             cursor: pointer;
-            transition: background-color 0.2s ease;
+            transition: background-color 0.3s ease;
         }
-        .container button:hover {
+        .blue-button {
+            background-color: #007BFF;
+            color: white;
+        }
+        .blue-button:hover {
             background-color: #0056b3;
         }
-        .topleft{
-            position: fixed;
-            top: 0px;
-            left: 6px;
-            color: #222
+        .red-button {
+            background-color: #DC3545;
+            color: white;
+        }
+        .red-button:hover {
+            background-color: #a71d2a;
         }
     </style>
 </head>
 <body>
-    <h1 class="topleft">Settings</h1>
     <div class="container">
-        <h1>Change Profile Picture</h1>
-        <input type="text" id="imageUrl" placeholder="Enter image URL here">
-        <button onclick="ChangeUserimg()">Change</button>
+        <h1>Settings</h1>
+        <a href="Changepfp.html"><button class="blue-button">Change Profile Picture</button></a>
+        <a href="ChangeUsername.html"><button class="blue-button">Change Username</button></a>
+        <a href="ChangePass.html"><button class="blue-button">Change Password</button></a>
+        <a href="DeleteAccount.html"><button class="red-button">Delete Account</button></a>
     </div>
-<script src="Settings.js"></script>
 </body>
 </html>
