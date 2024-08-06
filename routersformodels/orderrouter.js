@@ -38,4 +38,70 @@ router.post('/addorder', async (req, res) => {
         return res.status(500).json({ error: 'Server error' });
     }
 })
+
+
+
+router.get('/order-stats', async (req, res) => {
+    try {
+        const orders = await Order.find().populate('cart');
+        const instrumentCount = {};
+
+        orders.forEach(order => {
+            order.cart.forEach((item, index) => {
+                const instrumentType = item.instrumenttype;
+                const amountOrdered = order.cartAmounts[index];
+                if (!instrumentCount[instrumentType]) {
+                    instrumentCount[instrumentType] = 0;
+                }
+                instrumentCount[instrumentType] += amountOrdered;
+            });
+        });
+
+        res.json(instrumentCount);
+    } catch (err) {
+        res.status(500).json({ message: err.message });
+    }
+});
+
+router.get('/orders-over-time', async (req, res) => {
+    try {
+        const orders = await Order.aggregate([
+            {
+                $group: {
+                    _id: { $dateToString: { format: "%Y-%m-%d", date: "$date" } },
+                    count: { $sum: 1 }
+                }
+            },
+            {
+                $sort: { _id: 1 }
+            }
+        ]);
+
+        res.json(orders);
+    } catch (err) {
+        res.status(500).json({ message: err.message });
+    }
+});
+
+
+router.get('/order-heatmap', async (req, res) => {
+
+    try {
+        const orders = await Order.aggregate([
+            {
+                $group: {
+                    _id: { $dateToString: { format: "%Y-%m-%d", date: "$date" } },
+                    count: { $sum: 1 }
+                }
+            },
+            {
+                $sort: { _id: 1 }
+            }
+        ]);
+
+        res.json(orders);
+    } catch (err) {
+        res.status(500).json({ message: err.message });
+    }
+})
 module.exports = router;

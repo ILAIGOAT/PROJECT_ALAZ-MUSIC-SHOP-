@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Order Stats Pie Chart</title>
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f9;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        #chart {
+            width: 70vw;
+            height: 70vh;
+        }
+        .slice {
+            stroke: #fff;
+            stroke-width: 2px;
+            transition: transform 0.3s ease;
+        }
+        .slice:hover {
+            transform: translateX(10px) translateY(10px);
+        }
+        .label {
+            font-size: 16px;
+            fill: #333;
+            font-weight: bold;
+            text-anchor: middle;
+        }
+    </style>
+</head>
+<body>
+    <div id="chart"></div>
+    <script>
+        async function fetchOrderStats() {
+            const response = await fetch('http://localhost:88/order/order-stats');
+            const data = await response.json();
+            return Object.entries(data).map(([key, value]) => ({ instrument: key, count: value }));
+        }
+
+        function createPieChart(data) {
+            const width = window.innerWidth * 0.7;
+            const height = window.innerHeight * 0.7;
+            const margin = 20;
+
+            const radius = Math.min(width, height) / 2 - margin;
+
+            const svg = d3.select("#chart")
+                .append("svg")
+                .attr("width", width)
+                .attr("height", height)
+                .append("g")
+                .attr("transform", `translate(${width / 2},${height / 2})`);
+
+            const pie = d3.pie()
+                .value(d => d.count);
+
+            const data_ready = pie(data);
+
+            const arc = d3.arc()
+                .innerRadius(0)
+                .outerRadius(radius);
+
+            svg.selectAll('path')
+                .data(data_ready)
+                .enter()
+                .append('path')
+                .attr('d', arc)
+                .attr('class', 'slice')
+                .attr('fill', (d, i) => d3.schemeCategory10[i % 10]);
+
+            svg.selectAll('text')
+                .data(data_ready)
+                .enter()
+                .append('text')
+                .text(d => `${d.data.instrument}: ${d.data.count}`)
+                .attr("transform", d => `translate(${arc.centroid(d)})`)
+                .attr('class', 'label')
+                .style('text-anchor', 'middle');
+        }
+
+        fetchOrderStats().then(data => createPieChart(data));
+    </script>
+</body>
+</html>

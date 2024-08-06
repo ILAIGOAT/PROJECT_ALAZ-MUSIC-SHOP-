@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Orders Over Time Line Chart</title>
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f9;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        #chart {
+            width: 90vw;
+            height: 80vh;
+        }
+        .line {
+            fill: none;
+            stroke-width: 3px;
+        }
+        .axis-label {
+            font-size: 16px;
+            fill: #333;
+        }
+        .axis path,
+        .axis line {
+            fill: none;
+            shape-rendering: crispEdges;
+        }
+        .tick text {
+            font-size: 14px;
+        }
+        .tooltip {
+            position: absolute;
+            text-align: center;
+            padding: 10px;
+            background-color: #fff;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            pointer-events: none;
+            display: none;
+            font-size: 12px;
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+</head>
+<body>
+    <div id="chart"></div>
+    <div class="tooltip"></div>
+    <script>
+        async function fetchOrdersOverTime() {
+            const response = await fetch('http://localhost:88/order/orders-over-time');
+            const data = await response.json();
+            return data.map(d => ({ date: new Date(d._id), count: d.count }));
+        }
+
+        function createLineChart(data) {
+            const width = window.innerWidth * 0.9;
+            const height = window.innerHeight * 0.8;
+            const margin = { top: 40, right: 40, bottom: 60, left: 60 };
+
+            const svg = d3.select("#chart")
+                .append("svg")
+                .attr("width", width)
+                .attr("height", height)
+                .append("g")
+                .attr("transform", `translate(${margin.left},${margin.top})`);
+
+            const x = d3.scaleTime()
+                .domain(d3.extent(data, d => d.date))
+                .range([0, width - margin.left - margin.right]);
+
+            const y = d3.scaleLinear()
+                .domain([0, d3.max(data, d => Math.ceil(d.count))])  // Use Math.ceil to avoid fractional values
+                .nice()
+                .range([height - margin.top - margin.bottom, 0]);
+
+            const line = d3.line()
+                .x(d => x(d.date))
+                .y(d => y(d.count));
+
+            svg.append("path")
+                .data([data])
+                .attr("class", "line")
+                .attr("d", line)
+                .style("stroke", "steelblue");
+
+            svg.append("g")
+                .attr("transform", `translate(0,${height - margin.top - margin.bottom})`)
+                .call(d3.axisBottom(x).tickFormat(d3.timeFormat("%b %d")).ticks(12))
+                .append("text")
+                .attr("x", (width - margin.left - margin.right) / 2)
+                .attr("y", margin.bottom - 10)
+                .style("text-anchor", "middle")
+                .attr("class", "axis-label")
+                .text("Date");
+
+            svg.append("g")
+                .call(d3.axisLeft(y).ticks(d3.max(data, d => Math.ceil(d.count))))
+                .append("text")
+                .attr("transform", "rotate(-90)")
+                .attr("y", -margin.left + 20)
+                .attr("x", -height / 2)
+                .attr("dy", "-2.5em")
+                .style("text-anchor", "middle")
+                .attr("class", "axis-label")
+                .text("Number of Orders");
+
+            // Tooltip
+            const tooltip = d3.select(".tooltip");
+
+            svg.selectAll("circle")
+                .data(data)
+                .enter()
+                .append("circle")
+                .attr("cx", d => x(d.date))
+                .attr("cy", d => y(d.count))
+                .attr("r", 6)
+                .style("fill", "steelblue")
+                .style("stroke", "#fff")
+                .style("stroke-width", "2px")
+                .on("mouseover", (event, d) => {
+                    tooltip.style("display", "inline")
+                        .html(`Date: ${d3.timeFormat("%b %d, %Y")(d.date)}<br>Orders: ${d.count}`)
+                        .style("left", `${event.pageX + 10}px`)
+                        .style("top", `${event.pageY - 28}px`);
+                })
+                .on("mouseout", () => {
+                    tooltip.style("display", "none");
+                });
+        }
+
+        fetchOrdersOverTime().then(data => createLineChart(data));
+    </script>
+</body>
+</html>
