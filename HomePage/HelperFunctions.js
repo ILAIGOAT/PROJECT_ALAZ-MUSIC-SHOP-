@@ -20,7 +20,10 @@ export function ShowConnectedUser(state)
         document.getElementById("btn").src = sessionStorage.getItem('ConnectedUserimg');
         console.log("pfp changed in main");
         if(sessionStorage.getItem('IfUserAdmin') === 'true')
+        {
             document.getElementById("role").innerHTML = "Admin";
+            
+        }
         else
             document.getElementById("role").innerHTML = "User";
 

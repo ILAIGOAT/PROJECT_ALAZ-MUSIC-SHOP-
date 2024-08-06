@@ -39,25 +39,23 @@
         <span class="color">Color:</span>
         <div class="circles">
           <span class="circle blue active"  id="blue"></span>
-          <span class="circle pink " id="pink"></span>
-          <span class="circle yellow " id="yellow"></span>
         </div>
       </div>
 </div>
 <div class="quantity">
-    <button class="plus-btn" type="button" name="button" id="plus-btn">
+    <button class="plus-btn" type="button" name="button" id="plus-btn" onclick="IncreamentQuantity()">
       <img src="../shopping cart/plus-lg.svg" alt="" />
     </button>
-    <input type="test" id="quanumber" name="name" value="1" min="1">
-    <button class="minus-btn" type="button" name="button" id="minus-btn">
+    <input type="text" id="quanumber" name="name" value="1" min="1">
+    <button class="minus-btn" type="button" name="button" id="minus-btn"onclick="DecreamentQuantity()">
       <img src="../shopping cart/dash.svg" alt="" />
     </button>
 </div>
                 <div class="item-price">
-                    <input id="price" type="hidden" value="49.999">
-                    $49.99
+                    <input id="price" type="hidden" value="49.99">
+                    <p id="updatedprice">$49.99</p>
                 </div>
-                <button class="add-to-cart-btn" onclick="addToCart()">Add to store</button>
+                <button class="add-to-cart-btn" onclick="addToCart()">Add to Cart</button>
             </div>
         </div>
     </div>

@@ -55,36 +55,53 @@ $(this).toggleClass('is-active');
 
 
 
-document.getElementById('plus-btn').addEventListener('click', function() {
-    incrementQuantity();
-    UpdatePrice();
-});
-document.getElementById('minus-btn').addEventListener('click', function() {
-    decrementQuantity();
-    UpdatePrice();
-});
-function incrementQuantity() {
-    let quantityInput = document.getElementById("quanumber");
-    let currentQuantity = parseInt(quantityInput.value);
-    quantityInput.value = currentQuantity + 1;
-    console.log("Incremented Quantity:", quantityInput.value); // Debugging line
-}
-function decrementQuantity() {
-    let quantityInput = document.getElementById("quanumber");
-    let currentQuantity = parseInt(quantityInput.value);
-    if (currentQuantity > 1) {
-        quantityInput.value = currentQuantity - 1;
-    }
-    console.log("Decremented Quantity:", quantityInput.value); // Debugging line
-}
-function UpdatePrice()
+// document.getElementById('plus-btn').addEventListener('click', function() {
+//     incrementQuantity();
+//     UpdatePrice();
+// });
+// document.getElementById('minus-btn').addEventListener('click', function() {
+//     decrementQuantity();
+//     UpdatePrice();
+// });
+// function incrementQuantity() {
+//     var quantityInput = document.getElementById("quanumber");
+//     var currentQuantity = parseInt(quantityInput.value);
+//     quantityInput.value = currentQuantity + 1;
+//     console.log("Incremented Quantity:", quantityInput.value); // Debugging line
+// }
+// function decrementQuantity() {
+//     var quantityInput = document.getElementById("quanumber");
+//     var currentQuantity = parseInt(quantityInput.value);
+//     if (currentQuantity > 1) {
+//         quantityInput.value = currentQuantity - 1;
+//     }
+//     console.log("Decremented Quantity:", quantityInput.value); // Debugging line
+// }
+// function UpdatePrice()
+// {
+//     var quantityInput = document.getElementById("quanumber");
+//     var quantity = parseInt(quantityInput.value);
+//     var price = parseFloat(document.getElementById("price").value);
+//     console.log("Quantity in UpdatePrice:", quantity); // Debugging line
+//     console.log("Price in UpdatePrice:", price); // Debugging line
+//     var totalPrice = price * quantity;
+//     console.log("Total Price:", totalPrice); // Debugging line
+//     document.getElementsByClassName("item-price")[0].innerHTML = "$" + totalPrice;
+// }
+
+function IncreamentQuantity()
 {
-    let quantityInput = document.getElementById("quanumber");
-    let quantity = parseInt(quantityInput.value);
-    let price = parseFloat(document.getElementById("price").value);
-    console.log("Quantity in UpdatePrice:", quantity); // Debugging line
-    console.log("Price in UpdatePrice:", price); // Debugging line
-    let totalPrice = price * quantity;
-    console.log("Total Price:", totalPrice); // Debugging line
-    document.getElementsByClassName("item-price")[0].innerHTML = "$" + totalPrice;
+    document.getElementById("quanumber").value++;
+    UpdatePrice(document.getElementById("quanumber").value);
+}
+function DecreamentQuantity()
+{
+    if(document.getElementById("quanumber").value > 1)
+        document.getElementById("quanumber").value--;
+    UpdatePrice(document.getElementById("quanumber").value);
+}
+function UpdatePrice(times)
+{
+    let price = document.getElementById("price").value;
+    document.getElementById("updatedprice").innerHTML = "$" + (price * times).toFixed(2);
 }

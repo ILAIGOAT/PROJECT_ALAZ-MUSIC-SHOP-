@@ -20,6 +20,8 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
+    
+    
 }
 
 .item {
@@ -27,7 +29,7 @@ body {
     flex-wrap: wrap;
     align-items: flex-start;
     justify-content: center;
-    width: 100%;
+    width: 600px;
 }
 
 .item-image {
@@ -45,7 +47,7 @@ body {
 .item-details {
     flex: 2;
     margin: 10px;
-    max-width: 600px;
+    max-width: 200px;
 }
 
 .item-title {
@@ -100,7 +102,7 @@ body {
     transform: scale(1.05);
 }
 
-@media (max-width: 768px) {
+/* @media (max-width: 768px) {
     .item {
         flex-direction: column;
         align-items: center;
@@ -126,7 +128,7 @@ body {
     .add-to-cart-btn {
         font-size: 0.9em;
     }
-}
+} */
 
 /*.edit-text{
     
@@ -145,25 +147,15 @@ body {
     margin: 0 4px;
     cursor: pointer;
     transition: all 0.4s ease;
+    margin-left: 57px;
+    margin-top: -20px;
 }
 .color-option  .circles .circle.blue.active{
     box-shadow: 0 0 0 2px #fff,
                  0 0 0 4px #0071C7;
 }
-.color-option  .circles .circle.pink{
-    background: #FA1795;
-}
-.color-option  .circles .circle.pink.active{
-    box-shadow: 0 0 0 2px #fff,
-                 0 0 0 4px #FA1795;
-}
-.color-option  .circles .circle.yellow{
-    background: #F5DA00;
-}
-.color-option  .circles .circle.yellow.active{
-    box-shadow: 0 0 0 2px #fff,
-                 0 0 0 4px #F5DA00;
-}
+
+
 
 .color{
     font-size: 1.1em;
