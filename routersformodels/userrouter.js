@@ -3,6 +3,7 @@ const User = require('../models/usermodel');
 const Item = require('../models/itemmodel.js')
 var router = express.Router();
 const bcrypt = require('bcrypt');
+const { mongo } = require('mongoose');
 
 
 
@@ -190,7 +191,7 @@ router.post('/getCartItems', async (req, res) => {
     let prices = '';
     let imgs = '';
     let amounts = '';
-    //let ids ='';
+    let ids ='';
 
     console.log("Received get cart request with body:", req.body);
 
@@ -244,25 +245,42 @@ router.post('/getCartItems', async (req, res) => {
     }
 });
 
-router.post('/removeFromCart', async (req,res) => {
+router.post('/removeFromCart', async (req, res) => {
     const { email, itemId } = req.body;
-
-    console.log("Recieved remove from cart request:", req.body);
-
-    try{
-        const user = await User.findOne({email});
-        if(!user){
+    console.log("Received remove from cart request:", req.body);
+    try {
+        const user = await User.findOne({ email });
+        if (!user) {
             console.log("User not found:", email);
             return res.status(400).json({ error: "User not found" });
         }
-        ItemIndex = user.cart.findIndex((element) => element == itemId);
-        user.cart.splice(ItemIndex,1);
-        user.cartAmounts.splice(ItemIndex,1);
-        console.log("removel from cart successful for email:", email);
-        return res.status(200).json({ message: "removel from cart successful"});
-    } catch(error){
-        console.error("Error during login:", error);
-        return res.status(500).json({ error: 'Server error'});
+
+        console.log("User cart before removal:", user.cart);
+        console.log("User cart amounts before removal:", user.cartAmounts);
+        console.log("Item ID to remove:", itemId);
+
+        const itemIndex = user.cart.findIndex((element) => element.toString() === itemId);
+        if (itemIndex === -1) {
+            console.log("Item not found in cart:", itemId);
+            console.log(email)
+            return res.status(400).json({ error: "Item not found in cart" });
+        }
+
+        user.cart.splice(itemIndex, 1);
+        user.cartAmounts.splice(itemIndex, 1);
+
+        console.log("Attempting to save user after removal...");
+        await user.save();
+        console.log("User save operation completed.");
+
+        console.log("User cart after removal:", user.cart);
+        console.log("User cart amounts after removal:", user.cartAmounts);
+        console.log("Removal from cart successful for email:", email);
+
+        return res.status(200).json({ message: "Removal from cart successful" });
+    } catch (error) {
+        console.error("Error during remove from cart:", error);
+        return res.status(500).json({ error: 'Server error' });
     }
 });
 module.exports = router;
