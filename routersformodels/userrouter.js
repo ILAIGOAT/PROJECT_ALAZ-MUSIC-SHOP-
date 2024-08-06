@@ -245,6 +245,7 @@ router.post('/getCartItems', async (req, res) => {
     }
 });
 
+<<<<<<< Updated upstream
 router.post('/removeFromCart', async (req, res) => {
     const { email, itemId } = req.body;
     console.log("Received remove from cart request:", req.body);
@@ -283,4 +284,46 @@ router.post('/removeFromCart', async (req, res) => {
         return res.status(500).json({ error: 'Server error' });
     }
 });
+=======
+
+router.post('/giveadmin', async (req,res) => {
+    const { email } = req.body;
+
+    console.log("Recieved Admin request:", req.body);
+
+    try{
+        const user = await User.findOneAndUpdate({ email },{$set: {admin:true}});
+        if(!user){
+            console.log("User not found:", email);
+            return res.status(400).json({ error: "User not found" });
+        }
+        
+        console.log("Admin Was Given To:", email);
+        return res.status(200).json({ message: "New Admin Was Given"});
+    } catch(error){
+        console.error("Error during login:", error);
+        return res.status(500).json({ error: 'Server error'});
+    }
+})
+
+router.post('/takeadmin', async (req,res) => {
+    const { email } = req.body;
+
+    console.log("Recieved Take Admin request:", req.body);
+
+    try{
+        const user = await User.findOneAndUpdate({ email },{$set: {admin:false}});
+        if(!user){
+            console.log("User not found:", email);
+            return res.status(400).json({ error: "User not found" });
+        }
+       
+        console.log("Admin Was Taken From:", email);
+        return res.status(200).json({ message: "New Admin Was Taken"});
+    } catch(error){
+        console.error("Error during login:", error);
+        return res.status(500).json({ error: 'Server error'});
+    }
+})
+>>>>>>> Stashed changes
 module.exports = router;

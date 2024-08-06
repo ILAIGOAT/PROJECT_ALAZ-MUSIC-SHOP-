@@ -22,7 +22,7 @@ export function ShowConnectedUser(state)
         if(sessionStorage.getItem('IfUserAdmin') === 'true')
         {
             document.getElementById("role").innerHTML = "Admin";
-            
+            document.getElementById("seeifadmin").style.display = "";
         }
         else
             document.getElementById("role").innerHTML = "User";
@@ -51,6 +51,7 @@ export function Logout()
     sessionStorage.setItem('userConnected' , 'false');//change to session storage if there will be bugs 'Yanivs kinda idea'.
     document.getElementById("role").innerHTML = "Admin/User";
     document.getElementById("name").innerHTML = "Guest";
+    document.getElementById("seeifadmin").style.display = "none";
     initializeUserStatus();
     location.reload();
 }
