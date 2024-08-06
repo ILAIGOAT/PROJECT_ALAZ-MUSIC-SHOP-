@@ -1,7 +1,7 @@
 function additem(name,price,img,amount){
     var ul = document.getElementById("items");
     var li = document.createElement("li");
-    li.innerHTML = '<div class=\"item\"><div class=\"buttons\"><span class=\"delete-btn\"></span><span class=\"like-btn\"></span></div><div class= \"image\"><img src=\"' + img + '\" alt=\"\" /></div><div class=\"description\"><span>' + name + '</span><span>Brown</span></div><div class=\"quantity\"><button class=\"plus-btn\" type=\"button" name=\"button\"><img src=\"plus-lg.svg\" alt=\"\" /></button><input type=\"text\" name=\"name\" value=\"'+ amount + '\"><button class=\"minus-btn\" type=\"button\" name=\"button\"><img src=\"dash.svg\" alt=\"\" /></button></div><div class=\"total-price\">' + Integer(price)*Integer(amount) + '</div></div></div>';
+    li.innerHTML = '<div class=\"item\"><div class=\"buttons\"><span class=\"delete-btn\"></span><span class=\"like-btn\"></span></div><div class= \"image\"><img src=\"' + img + '\" alt=\"\" class="itemImg" /></div><div class=\"description\"><span>' + name + '</span><span>Brown</span></div><div class=\"quantity\"><button class=\"plus-btn\" type=\"button" name=\"button\"><img src=\"plus-lg.svg\" alt=\"\" /></button><input type=\"text\" name=\"name\" value=\"'+ amount + '\"><button class=\"minus-btn\" type=\"button\" name=\"button\"><img src=\"dash.svg\" alt=\"\" /></button></div><div class=\"total-price\">' + Number(price)*Number(amount) + '</div></div></div>';
     ul.appendChild(li);
 }
 $('.minus-btn').on('click', function(e) {
@@ -66,11 +66,15 @@ function resiveCartItems() {
             console.log("Cart Display successful:", res);
 
             sessionStorage.setItem('CartItemNames', JSON.stringify((res.names).split("~").filter(word => word !== "")));
+            console.log("Names Are: ", sessionStorage.getItem("CartItemNames"))
             // sessionStorage.setItem('CartItemColors', JSON.stringify((res.colors).split("~").filter(word => word !== "")));
-            sessionStorage.setItem('CartItemprices', JSON.stringify((res.prices).split("~").filter(word => word !== "")));
+            sessionStorage.setItem('CartItemPrices', JSON.stringify((res.prices).split("~").filter(word => word !== "")));
+            console.log("Names Are: ", sessionStorage.getItem("CartItemPrices"))
             // sessionStorage.setItem('CartItemInstrumenttypes', JSON.stringify((res.instrumenttypes).split("~").filter(word => word !== "")));
             sessionStorage.setItem('CartItemImgs', JSON.stringify((res.imgs).split(" ").filter(word => word !== "")));
+            console.log("Names Are: ", sessionStorage.getItem("CartItemImgs"))
             sessionStorage.setItem('CartItemAmounts', JSON.stringify((res.amounts).split("~").filter(word => word !== "")));
+            console.log("Names Are: ", sessionStorage.getItem("CartItemAmounts"))
 
             let names = JSON.parse(sessionStorage.getItem('CartItemNames'));
             // let colors = JSON.parse(sessionStorage.getItem('CartItemColors'));
@@ -80,6 +84,7 @@ function resiveCartItems() {
             let amounts = JSON.parse(sessionStorage.getItem('CartItemAmounts'));
 
             for (let i = 0; i < names.length; i++) {
+                console.log(names[i])
                 additem(names[i], prices[i], imgs[i], amounts[i]);
             }
         }
