@@ -5,6 +5,7 @@ const mongoose = require('mongoose');
 mongoose.connect('mongodb+srv://MSalaz:NbfQnrVeMrM1fUAd@musicshop.0dbqnnb.mongodb.net/MusicShopDataBase');
 const User = require('../routersformodels/userrouter');
 const Item = require('../routersformodels/itemrouter');
+const Order = require('../routersformodels/orderrouter');
 
 
 var app = express();
@@ -13,6 +14,7 @@ app.use(bodyParser.urlencoded({ extended: true}));
 app.use(express.json());
 app.use('/user',User);
 app.use('/item',Item);
+app.use('/order',Order);
 
 
 mongoose.connection.once('open', () => {

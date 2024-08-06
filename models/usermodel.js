@@ -37,12 +37,18 @@ const User = new Schema(
                 ref: 'Item'
             }
         ],
-    cartAmounts:[
+        cartAmounts:[
         {
             type: Number,
             default: false
         }
-    ]        
+        ],   
+        orders:[
+        {
+            type: Schema.Types.ObjectId,
+            ref: 'Order'
+        }
+        ]
     }
 ) 
 
