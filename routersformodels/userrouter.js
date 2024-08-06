@@ -245,7 +245,6 @@ router.post('/getCartItems', async (req, res) => {
     }
 });
 
-<<<<<<< Updated upstream
 router.post('/removeFromCart', async (req, res) => {
     const { email, itemId } = req.body;
     console.log("Received remove from cart request:", req.body);
@@ -284,7 +283,6 @@ router.post('/removeFromCart', async (req, res) => {
         return res.status(500).json({ error: 'Server error' });
     }
 });
-=======
 
 router.post('/giveadmin', async (req,res) => {
     const { email } = req.body;
@@ -325,5 +323,4 @@ router.post('/takeadmin', async (req,res) => {
         return res.status(500).json({ error: 'Server error'});
     }
 })
->>>>>>> Stashed changes
 module.exports = router;
