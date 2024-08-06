@@ -1,7 +1,7 @@
 function additem(name,price,img,amount){
     var ul = document.getElementById("items");
     var li = document.createElement("li");
-    li.innerHTML = '<div class=\"item\"><div class=\"buttons\"><span class=\"delete-btn\"></span><span class=\"like-btn\"></span></div><div class= \"image\"><img src=\"' + img + '\" alt=\"\" class="itemImg" /></div><div class=\"description\"><span>' + name + '</span><span>Brown</span></div><div class=\"quantity\"><button class=\"plus-btn\" type=\"button" name=\"button\"><img src=\"plus-lg.svg\" alt=\"\" /></button><input type=\"text\" name=\"name\" value=\"'+ amount + '\"><button class=\"minus-btn\" type=\"button\" name=\"button\"><img src=\"dash.svg\" alt=\"\" /></button></div><div class=\"total-price\">' + Number(price)*Number(amount) + '</div></div></div>';
+    li.innerHTML = '<div class=\"item\"><div class=\"buttons\"><span class=\"delete-btn\"></span><span class=\"like-btn\"></span></div><div class= \"image\"><img src=\"' + img + '\" alt=\"\" class="itemImg" /></div><div class=\"description\"><span>' + name + '</span><span></span></div><div class=\"quantity\"><button class=\"plus-btn\" type=\"button" name=\"button\"><img src=\"plus-lg.svg\" alt=\"\" /></button><input type=\"text\" name=\"name\" value=\"'+ amount + '\"><button class=\"minus-btn\" type=\"button\" name=\"button\"><img src=\"dash.svg\" alt=\"\" /></button></div><div class=\"total-price\">' + Number(price)*Number(amount) + '</div></div></div>';
     ul.appendChild(li);
 }
 $('.minus-btn').on('click', function(e) {

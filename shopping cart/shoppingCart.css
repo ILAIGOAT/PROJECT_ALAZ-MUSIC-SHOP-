@@ -1,38 +1,50 @@
-
-/*הגוף, עושה את האוטליין הכחול*/
+/* Body styles */
 html,
 body {
-  
   padding: 10px;
   margin: 0;
-  background-color: #678183;
+  background-color: #FFFFFF;
   font-family: 'Roboto', sans-serif;
 }
 
-/*the shopping bag title*/
+/* Shopping cart title */
 .title {
   height: 60px;
   border-bottom: 1px solid #E1E8EE;
   padding: 20px 30px;
   color: #5E6977;
-  font-size: 18px;
-  font-weight: 400;
+  font-size: 24px;
+  font-weight: 500;
+  text-align: center;
 }
 
-/*התוצגה של הפריטים,עושה שהפריטים יהיו מסודרים*/
+/* Shopping cart container */
+.shopping-cart {
+  margin: 80px auto;
+  padding: 20px;
+  max-width: 800px;
+}
+
+/* Item list styles */
+#items {
+  list-style-type: none;
+  padding: 0;
+}
+
+/* Item styles */
 .item {
   padding: 20px 30px;
   height: 120px;
   display: flex;
+  border-bottom: 1px solid #E1E8EE;
 }
 
-/*הקווי הפרדה בין הפריטים*/
+/* Specific item styles for nth-child(3) */
 .item:nth-child(3) {
-  border-top:  1px solid #E1E8EE;
-  border-bottom:  1px solid #E1E8EE;
+  border-top: 1px solid #E1E8EE;
 }
 
-/* Buttons -  Delete and Like */
+/* Buttons - Delete and Like */
 .buttons {
   position: relative;
   padding-top: 30px;
@@ -70,8 +82,8 @@ body {
 }
 
 @keyframes animate {
-  0%   { background-position: left;  }
-  50%  { background-position: right; }
+  0% { background-position: left; }
+  50% { background-position: right; }
   100% { background-position: right; }
 }
 
@@ -80,46 +92,13 @@ body {
   margin-right: 50px;
 }
 
-.shopping-cart {
-  
-  margin: 80px auto;
-  background: #FFFFFF;
-  box-shadow: 1px 2px 3px 0px rgba(0,0,0,0.10);
-  border-radius: 6px;
-
-  display: flex;
-  flex-direction: column;
-}
-
-/*עיצוב כפתור פלוס*/
-.plus-btn[class*=btn] {
-  width: 30px;
-  height: 30px;
-  background-color: #E1E8EE;
-  border-radius: 6px;
-  border: none;
-  cursor: pointer;
-}
-
-/*עיצוב כפתור פלוס*/
-.minus-btn[class*=btn] {
-  width: 30px;
-  height: 30px;
-  background-color: #E1E8EE;
-  border-radius: 6px;
-  border: none;
-  cursor: pointer;
-}
-
 /* Product Description */
-/* מסדר שהפירטים היו באמצעתמחיר מתחת מחיר הםלוס ומינוב מקום הנכון*/
 .description {
   padding-top: 10px;
   margin-right: 60px;
   width: 115px;
 }
 
-/*הנראות של הטקסט*/
 .description span {
   display: block;
   font-size: 14px;
@@ -130,18 +109,13 @@ body {
 .description span:first-child {
   margin-bottom: 5px;
 }
-.card{
-  color: #5E6977;
-  font-size: 18px;
-  font-weight: 350;
-  top: 555px;
-}
 
 /* Product Quantity */
 .quantity {
   padding-top: 20px;
   margin-right: 60px;
 }
+
 .quantity input {
   border: none;
   text-align: center;
@@ -151,19 +125,23 @@ body {
   font-weight: 300;
 }
 
+.plus-btn[class*=btn],
+.minus-btn[class*=btn] {
+  width: 30px;
+  height: 30px;
+  background-color: #E1E8EE;
+  border-radius: 6px;
+  border: none;
+  cursor: pointer;
+}
 
 .minus-btn img {
   margin-bottom: 4px;
 }
+
 .plus-btn img {
   margin-bottom: 5px;
 }
-button:focus,
-input:focus {
-  outline:0;
-}
-
-
 
 /* Total Price */
 .total-price {
@@ -175,7 +153,20 @@ input:focus {
   font-weight: 300;
 }
 
-/* Responsive */
+/* Card styles */
+.card {
+  color: #5E6977;
+  font-size: 18px;
+  font-weight: 350;
+}
+
+/* Summary */
+.mb-0 {
+  font-size: 18px;
+  font-weight: 350;
+}
+
+/* Responsive styles */
 @media (max-width: 800px) {
   .shopping-cart {
     width: 100%;
@@ -201,22 +192,13 @@ input:focus {
     margin-right: 20px;
   }
 }
-/* Summary */
-.mb-0{
-  font-size: 18px;
-  font-weight: 350;
-}
 
-.card{
-  color: #5E6977;
-  font-size: 18px;
-  font-weight: 350;
-  top: 555px;
-}
-
-#items{
-  list-style-type: none;
+/* Button focus styles */
+button:focus,
+input:focus {
+  outline: 0;
 }
 .itemImg{
-  height: 100px;
+  height: 80px;
+  margin-top: 5px;
 }
