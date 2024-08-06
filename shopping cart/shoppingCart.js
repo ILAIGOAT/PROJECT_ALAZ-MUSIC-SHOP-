@@ -1,7 +1,9 @@
 function additem(name,price,img,amount){
     var ul = document.getElementById("items");
     var li = document.createElement("li");
-    li.innerHTML = '<div class=\"item\"><div class=\"buttons\"><span class=\"delete-btn\"></span><span class=\"like-btn\"></span></div><div class= \"image\"><img src=\"' + img + '\" alt=\"\" class="itemImg" /></div><div class=\"description\"><span>' + name + '</span><span></span></div><div class=\"quantity\"><button class=\"plus-btn\" type=\"button" name=\"button\"><img src=\"plus-lg.svg\" alt=\"\" /></button><input type=\"text\" name=\"name\" value=\"'+ amount + '\"><button class=\"minus-btn\" type=\"button\" name=\"button\"><img src=\"dash.svg\" alt=\"\" /></button></div><div class=\"total-price\">' + Number(price)*Number(amount) + '</div></div></div>';
+    price = Number(price);
+    amount = Number(amount);
+    li.innerHTML = '<div class=\"item\"><div class=\"buttons\"><span class=\"delete-btn\"></span><span class=\"like-btn\"></span></div><div class=\"image\"><img src=\"' + img + '\" alt=\"\" class=\"itemImg\" /></div><div class=\"description\"><span>' + name + '</span><span></span></div><div class=\"quantity\"><span>'+  amount +'</span></div><div class=\"total-price\">' + price * amount + '₪</div><button class=\"remove-btn\">Remove from Cart</button></div>';
     ul.appendChild(li);
 }
 $('.minus-btn').on('click', function(e) {
@@ -78,15 +80,22 @@ function resiveCartItems() {
 
             let names = JSON.parse(sessionStorage.getItem('CartItemNames'));
             // let colors = JSON.parse(sessionStorage.getItem('CartItemColors'));
-            let prices = JSON.parse(sessionStorage.getItem('CartItemprices'));
+            let prices = JSON.parse(sessionStorage.getItem('CartItemPrices'));
             // let instrumenttypes = JSON.parse(sessionStorage.getItem('CartItemInstrumenttypes'));
             let imgs = JSON.parse(sessionStorage.getItem('CartItemImgs'));
             let amounts = JSON.parse(sessionStorage.getItem('CartItemAmounts'));
 
+            var totalPrice = 0;
             for (let i = 0; i < names.length; i++) {
-                console.log(names[i])
+                console.log(names[i]);
                 additem(names[i], prices[i], imgs[i], amounts[i]);
+                totalPrice += Number(prices[i])*Number(amounts[i]);
             }
+            var PriceToChange = document.getElementById("totalPrice");
+            var PriceToChange2 = document.getElementById("productsPrice");
+            PriceToChange.innerHTML = "₪" + totalPrice;
+            PriceToChange2.innerHTML = "₪" + totalPrice;
+
         }
     })
     .catch(error => {

@@ -15,7 +15,7 @@
     <div class="shopping-cart">
       <!-- Title -->
       <div class="title">
-        Shopping Bag
+        Shopping Cart 
       </div>
 
       <ul id="items" class="list-group mb-4">
@@ -31,11 +31,11 @@
           <ul class="list-group list-group-flush">
             <li class="list-group-item d-flex justify-content-between align-items-center border-0 px-0 pb-0">
               Products
-              <span>$53.98</span>
+              <span id="productsPrice">$53.98</span>
             </li>
             <li class="list-group-item d-flex justify-content-between align-items-center px-0">
-              Shipping
-              <span>Gratis</span>
+              Shipping (Enter Your address)
+            <input type="text" value="enter"></input>
             </li>
             <li class="list-group-item d-flex justify-content-between align-items-center border-0 px-0 mb-3">
               <div>
@@ -44,7 +44,7 @@
                   <p class="mb-0">(including VAT)</p>
                 </strong>
               </div>
-              <span><strong>$53.98</strong></span>
+              <span><strong id="totalPrice">$53.98</strong></span>
             </li>
           </ul>
           <button type="button" id="checkout-btn" class="btn btn-primary btn-lg btn-block mt-3">
