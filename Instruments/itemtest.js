@@ -1,4 +1,13 @@
-// script.js
+
+function additem(name,price,img,color,id){
+    var ul = document.getElementById("items");
+    var li = document.createElement("li");
+    price = Number(price);
+    amount = Number(amount);
+    li.innerHTML = '<div class=\"item\"><div class=\"buttons\"><span class=\"delete-btn\"></span><span class=\"like-btn\"></span></div><div class=\"image\"><img src=\"' + img + '\" alt=\"\" class=\"itemImg\" /></div><div class=\"description\"><span>' + name + '</span><span></span></div><div class=\"quantity\"><span>'+  amount +'</span></div><div class=\"total-price\">' + price * amount + '₪</div><button class=\"remove-btn\" data-id=\"'+id +'\">Remove from Cart</button></div>';
+    ul.appendChild(li);
+}
+
 
 function addToCart() {
     alert('Item added to cart!');
@@ -15,6 +24,61 @@ let circle = document.querySelector(".color-option");//for the colors
     }
 });
 
+function receiveCartItems(Category) {
+        
+    console.log("Sending get category items request");
+
+    fetch('http://localhost:88/user/getCategoryItems', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ Category })
+    })
+    .then(res => {
+        return res.json();
+    })
+    .then(res => {
+
+        if (res.error) {
+            alert(res.error);
+            console.log("Category Display error:", res.error);
+            window.location.href = "/HomePage/index.html";
+        } else if (res.msg) {
+            console.log("Category Display successful:", res);
+
+            sessionStorage.setItem('CatgoryItemNames', JSON.stringify((res.names).split("~").filter(word => word !== "")));
+            console.log("Names Are: ", sessionStorage.getItem("CartItemNames"))
+            // sessionStorage.setItem('CartItemColors', JSON.stringify((res.colors).split("~").filter(word => word !== "")));
+            sessionStorage.setItem('CatgoryItemPrices', JSON.stringify((res.prices).split("~").filter(word => word !== "")));
+            console.log("Names Are: ", sessionStorage.getItem("CartItemPrices"))
+            // sessionStorage.setItem('CartItemInstrumenttypes', JSON.stringify((res.instrumenttypes).split("~").filter(word => word !== "")));
+            sessionStorage.setItem('CatgoryItemImgs', JSON.stringify((res.imgs).split(" ").filter(word => word !== "")));
+            console.log("Names Are: ", sessionStorage.getItem("CartItemImgs"))
+            sessionStorage.setItem('CatgoryItemColors', JSON.stringify((res.amounts).split("~").filter(word => word !== "")));
+            console.log("Names Are: ", sessionStorage.getItem("CartItemAmounts"))
+            sessionStorage.setItem('CatgoryItemIds', JSON.stringify((res.ids).split(" ").filter(word => word !== "")));
+
+            let names = JSON.parse(sessionStorage.getItem('CategoryItemNames'));
+            // let colors = JSON.parse(sessionStorage.getItem('CartItemColors'));
+            let prices = JSON.parse(sessionStorage.getItem('CategoryItemPrices'));
+            // let instrumenttypes = JSON.parse(sessionStorage.getItem('CartItemInstrumenttypes'));
+            let imgs = JSON.parse(sessionStorage.getItem('CategoryItemImgs'));
+            let colors = JSON.parse(sessionStorage.getItem('CategoryItemColors'));
+            let ids = JSON.parse(sessionStorage.getItem('CategoryItemIds'));
+
+            for (let i = 0; i < names.length; i++) {
+                console.log(names[i]);
+                additem(names[i], prices[i], imgs[i], colors[i],ids[i]);
+            }
+
+        }
+    })
+    .catch(error => {
+        console.error("Error during fetch:", error);
+        alert("Server error, please try again later.");
+    });
+}
 
 
 

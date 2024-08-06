@@ -11,3 +11,4 @@ function UpdateCategoryLine(event){
     console.log(innerHTML);
     sessionStorage.setItem('CategoryClicked',innerHTML);
 }
+

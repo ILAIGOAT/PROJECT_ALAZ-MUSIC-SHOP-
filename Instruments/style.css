@@ -1,42 +1,54 @@
 @import url('https://fonts.googleapis.com/css2?family=Work+Sans:ital,wght@0,100..900;1,100..900&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
     outline: none;
-    
 }
+
 body {
-    
-    overflow-x: hidden;
-    color: #42424A;
-    
-}
-header {
+    font-family: 'Roboto', sans-serif;
+    background-color: #f7f7f7;
+    margin: 0;
+    padding: 0;
     display: flex;
-    justify-content: space-between;
+    flex-direction: column;
     align-items: center;
+    color: #42424A;
+    overflow-x: hidden;
+    padding-top: 29%;
+}
+
+header {
     width: 100%;
     padding: 0 50px; /* Adjusted padding */
     border-bottom: 1px solid #dbdbdb;
-    
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: fixed; /* Fixed position to keep it at the top */
+    top: 0;
+    background-color: #fff; /* Background color to make it visible */
+    z-index: 1000; /* Higher z-index to stay above other elements */
 }
+
 header ul {
     display: flex;
     align-items: center;
-    
 }
+
 header ul li {
     list-style: none;
-    margin: 0 50px; /* Adjusted margin */
+    margin: 0 20px; /* Adjusted margin */
     position: relative; /* Added for submenu positioning */
-    
 }
-header ul li:last-child{
-    margin-right: 0;
 
+header ul li:last-child {
+    margin-right: 0;
 }
+
 header ul li a {
     text-decoration: none;
     color: #42424a;
@@ -47,6 +59,7 @@ header ul li a {
     font-weight: bold;
     font-family: 'Poppins', sans-serif;
 }
+
 header ul li a:hover {
     color: #ff8a00;
 }
@@ -61,51 +74,51 @@ header .submenu {
     box-shadow: 0 20px 45px rgba(0, 0, 0, 0.2);
     z-index: 99;
 }
-header ul .submenu{
+
+header ul .submenu {
     position: absolute;
     width: 200px;
     background-color: #ffffff;
-    box-shadow: 0 20px 45px #00000020;
+    box-shadow: 0 20px 45px rgba(0, 0, 0, 0.2);
     margin-top: -50px;
     opacity: 0;
     z-index: -999;
     transition: all ease 0.5s;
 }
+
 header ul li:hover .submenu {
     display: block; /* Show on hover */
     z-index: 99;
     opacity: 1;
     margin-top: 0;
 }
+
 header .submenu li {
     margin: 0;
     width: 100%;
 }
+
 header .submenu li a {
     padding: 15px 20px;
     display: inline-block;
     width: 100%;
 }
-header ul .submenu li a{
-    padding: 15px 20px;
-    display: inline-block;
-    width: 100%;
-}
+
 .hero_sec {
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100vh;
 }
+
 header ul li a img {
     width: 111px;
 }
 
-header #open i{
+header #open i {
     font-size: 27px;
 }
 
-#chosen{
+#chosen {
     color: #ff8a00;
 }
-
