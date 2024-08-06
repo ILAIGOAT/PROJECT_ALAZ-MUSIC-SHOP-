@@ -190,6 +190,7 @@ router.post('/getCartItems', async (req, res) => {
     let prices = '';
     let imgs = '';
     let amounts = '';
+    //let ids ='';
 
     console.log("Received get cart request with body:", req.body);
 
@@ -211,6 +212,7 @@ router.post('/getCartItems', async (req, res) => {
                 names += `~${item.name}`;
                 prices += `~${item.price}`;
                 imgs += ` ${item.img}`;
+                ids += ` ${item._id}`;
             } else {
                 console.log(`Item not found for ID: ${itemId}`);
             }
@@ -229,7 +231,8 @@ router.post('/getCartItems', async (req, res) => {
             names,
             prices,
             imgs,
-            amounts
+            amounts,
+            ids
         };
 
         console.log("Sending response:", response);
@@ -241,4 +244,25 @@ router.post('/getCartItems', async (req, res) => {
     }
 });
 
+router.post('/removeFromCart', async (req,res) => {
+    const { email, itemId } = req.body;
+
+    console.log("Recieved remove from cart request:", req.body);
+
+    try{
+        const user = await User.findOne({email});
+        if(!user){
+            console.log("User not found:", email);
+            return res.status(400).json({ error: "User not found" });
+        }
+        ItemIndex = user.cart.findIndex((element) => element == itemId);
+        user.cart.splice(ItemIndex,1);
+        user.cartAmounts.splice(ItemIndex,1);
+        console.log("removel from cart successful for email:", email);
+        return res.status(200).json({ message: "removel from cart successful"});
+    } catch(error){
+        console.error("Error during login:", error);
+        return res.status(500).json({ error: 'Server error'});
+    }
+});
 module.exports = router;

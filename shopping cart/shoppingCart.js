@@ -1,9 +1,9 @@
-function additem(name,price,img,amount){
+function additem(name,price,img,amount,id){
     var ul = document.getElementById("items");
     var li = document.createElement("li");
     price = Number(price);
     amount = Number(amount);
-    li.innerHTML = '<div class=\"item\"><div class=\"buttons\"><span class=\"delete-btn\"></span><span class=\"like-btn\"></span></div><div class=\"image\"><img src=\"' + img + '\" alt=\"\" class=\"itemImg\" /></div><div class=\"description\"><span>' + name + '</span><span></span></div><div class=\"quantity\"><span>'+  amount +'</span></div><div class=\"total-price\">' + price * amount + '₪</div><button class=\"remove-btn\">Remove from Cart</button></div>';
+    li.innerHTML = '<div class=\"item\"><div styles=\"opacity: 0;\" id=\"'+id+'\"></div><div class=\"buttons\"><span class=\"delete-btn\"></span><span class=\"like-btn\"></span></div><div class=\"image\"><img src=\"' + img + '\" alt=\"\" class=\"itemImg\" /></div><div class=\"description\"><span>' + name + '</span><span></span></div><div class=\"quantity\"><span>'+  amount +'</span></div><div class=\"total-price\">' + price * amount + '₪</div><button class=\"remove-btn\">Remove from Cart</button></div>';
     ul.appendChild(li);
 }
 $('.minus-btn').on('click', function(e) {
@@ -77,6 +77,7 @@ function resiveCartItems() {
             console.log("Names Are: ", sessionStorage.getItem("CartItemImgs"))
             sessionStorage.setItem('CartItemAmounts', JSON.stringify((res.amounts).split("~").filter(word => word !== "")));
             console.log("Names Are: ", sessionStorage.getItem("CartItemAmounts"))
+            sessionStorage.setItem('CartItemIds', JSON.stringify((res.ids).split(" ").filter(word => word !== "")));
 
             let names = JSON.parse(sessionStorage.getItem('CartItemNames'));
             // let colors = JSON.parse(sessionStorage.getItem('CartItemColors'));
@@ -84,11 +85,12 @@ function resiveCartItems() {
             // let instrumenttypes = JSON.parse(sessionStorage.getItem('CartItemInstrumenttypes'));
             let imgs = JSON.parse(sessionStorage.getItem('CartItemImgs'));
             let amounts = JSON.parse(sessionStorage.getItem('CartItemAmounts'));
+            let ids = JSON.parse(sessionStorage.getItem('CartItemIds'));
 
             var totalPrice = 0;
             for (let i = 0; i < names.length; i++) {
                 console.log(names[i]);
-                additem(names[i], prices[i], imgs[i], amounts[i]);
+                additem(names[i], prices[i], imgs[i], amounts[i],ids[i]);
                 totalPrice += Number(prices[i])*Number(amounts[i]);
             }
             var PriceToChange = document.getElementById("totalPrice");
@@ -101,5 +103,33 @@ function resiveCartItems() {
     .catch(error => {
         console.error("Error during fetch:", error);
         alert("Server error, please try again later.");
+    });
+}
+
+function removeFromCart(){
+    var email = sessionStorage.getItem('ConnectedEmail');
+    var id = document.getElementById("id");
+    console.log("Sending remove from cart request");
+    
+    fetch('http://localhost:88/user/removeFromCart', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+            email,
+            id
+        })
+    })
+    .then(res => res.json())
+    .then(res => {
+        if(res.error) {
+            alert(res.error);
+            console.log("Removal error:", res.error);
+        } if(res.message) {
+            alert('Removal successful');
+            console.log("Removal successful:", res.message);
+            window.location.reload();
+        }
     });
 }
