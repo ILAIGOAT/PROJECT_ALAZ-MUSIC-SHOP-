@@ -23,12 +23,15 @@ router.post('/addorder', async (req, res) => {
         console.log("Product was added successfully:", order);
 
 
-        const user = await User.findOneAndUpdate({email: useremail},{$set: [{cart:[]},{cartAmounts:[]}]});
+        const user = await User.findOne({email: useremail});
         if (!user) {
             console.log("User not exists:", email);
             return res.status(422).json({ error: "User not found" });
         }
-        await user.orders.push(order._id);
+        user.cart = [];
+        user.cartAmounts = [];
+        user.orders.push(order._id);
+        await user.save();
         return res.status(201).json({ message: "Order Made successfully!!" });
     } catch (error) {
         console.error("Error during Making New Orders product:", error);
