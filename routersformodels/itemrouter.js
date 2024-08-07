@@ -32,7 +32,7 @@ router.post('/addproduct', async (req, res) => {
 });
 
 router.post('/getCategoryItems', async (req, res) => {
-    const { Category } = req.body;
+    const { Category,min,max } = req.body;
     let names = '';
     let prices = '';
     let imgs = '';
@@ -43,7 +43,10 @@ router.post('/getCategoryItems', async (req, res) => {
 
     try {
         // Query the database to find all items with the specified category
-        const cursor = Item.find({ instrumenttype: Category });
+        const cursor = Item.find({
+            instrumenttype: Category,
+            price: { $gte: min, $lte: max }
+        });
 
         let foundAny = false;
 

@@ -60,3 +60,7 @@ rangeInput.forEach(input =>{
         }
     });
 });
+function refresh()
+{
+    location.reload();
+}
