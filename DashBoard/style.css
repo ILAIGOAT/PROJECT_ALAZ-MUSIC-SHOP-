@@ -23,15 +23,15 @@ body {
 
 header {
     width: 100%;
-    padding: 0 50px; 
+    padding: 0 50px; /* Adjusted padding */
     border-bottom: 1px solid #dbdbdb;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    position: fixed; 
+    position: fixed; /* Fixed position to keep it at the top */
     top: 0;
-    background-color: #fff; 
-    z-index: 1000; 
+    background-color: #fff; /* Background color to make it visible */
+    z-index: 1000; /* Higher z-index to stay above other elements */
 }
 
 header ul {

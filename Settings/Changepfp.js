@@ -1,8 +1,8 @@
-function aproveimage() {
+function aproveimage() {//working nice but if the image cannot be croped just pass it to the pfp uncropped.mint/
     var url = document.getElementById("imageUrl").value;
 
     if (url.startsWith('data:image/')) {
-        
+        // If it's a data URL, consider it valid
         console.log('The URL is a valid image data URL. Continuing with additional code...');
         cropImage(url, ChangeUserimg);
         return;
@@ -20,7 +20,7 @@ function aproveimage() {
 
     const img = new Image();
     img.onload = () => {
-        
+        // Continue with additional code here if the URL is a valid image
         console.log('The URL is a valid image. Continuing with additional code...');
         cropImage(url, ChangeUserimg);
     };
@@ -50,10 +50,10 @@ function cropImage(url, callback) {
                 callback(croppedImageUrl);
             }
         } catch (e) {
-            
+            // Canvas is tainted, pass uncropped image URL to callback
             console.error('Canvas is tainted and cannot be cropped:', e);
             if (typeof callback === 'function') {
-                callback(url); 
+                callback(url); // Pass the original image URL uncropped
             }
         }
     };
@@ -61,7 +61,7 @@ function cropImage(url, callback) {
     img.onerror = function() {
         console.error('Error loading image.');
         if (typeof callback === 'function') {
-            callback(url); 
+            callback(url); // Pass the original image URL uncropped
         }
     };
 

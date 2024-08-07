@@ -26,7 +26,7 @@ header {
     justify-content: space-between;
     align-items: center;
     width: 100%;
-    padding: 0 50px; 
+    padding: 0 50px; /* Adjusted padding */
     border-bottom: 1px solid #dbdbdb;
     background-color: white;
     border-radius: 177px;
@@ -34,8 +34,8 @@ header {
     
 }
 main{
-    position: absolute;
-    margin-left: 170px;
+    position: absolute;/**/
+    margin-left: 170px;/**/
     
 }
 header ul {
@@ -45,8 +45,8 @@ header ul {
 }
 header ul li {
     list-style: none;
-    margin: 0 50px; 
-    position: relative; 
+    margin: 0 50px; /* Adjusted margin */
+    position: relative; /* Added for submenu positioning */
     
 }
 header ul li:last-child{
@@ -59,7 +59,7 @@ header ul li a {
     padding: 22px 0;
     display: inline-block;
     transition: all 0.3s ease;
-    font-size: 20px; 
+    font-size: 20px; /* Adjusted font size */
     font-weight: bold;
     font-family: 'Poppins', sans-serif;
 }
@@ -68,9 +68,9 @@ header ul li a:hover {
 }
 
 header .submenu {
-    display: none; 
+    display: none; /* Initially hidden */
     position: absolute;
-    top: 100%; 
+    top: 100%; /* Positioned right below the parent li */
     left: 0;
     width: 200px;
     background-color: #ffffff;
@@ -88,7 +88,7 @@ header ul .submenu{
     transition: all ease 0.5s;
 }
 header ul li:hover .submenu {
-    display: block; 
+    display: block; /* Show on hover */
     z-index: 99;
     opacity: 1;
     margin-top: 0;
@@ -326,11 +326,11 @@ header #open i{
 .styled-video {
     width: 80%;
     max-width: 700px;
-    border: 5px solid; 
-    border-radius: 25px; 
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
-    overflow: hidden; 
-    display: block; 
+    border: 5px solid; /* Border color */
+    border-radius: 25px; /* Rounded corners */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Shadow for a 3D effect */
+    overflow: hidden; /* Ensures the video stays within rounded corners */
+    display: block; /* Ensures the video is treated as a block element */
     
 }
 

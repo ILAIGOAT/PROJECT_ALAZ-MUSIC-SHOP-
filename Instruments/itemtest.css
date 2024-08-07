@@ -23,7 +23,7 @@ body {
     max-width: 1200px;
     display: flex;
     flex-direction: column;
-    margin: auto; 
+    margin: auto; /* Ensure the container is centered */
     margin-bottom: 10px;
     
 }
@@ -32,7 +32,7 @@ body {
     display: flex;
     flex-wrap: wrap;
     align-items: flex-start;
-    justify-content: center; 
+    justify-content: center; /* Center the items within the container */
     width: 600px;
 }
 

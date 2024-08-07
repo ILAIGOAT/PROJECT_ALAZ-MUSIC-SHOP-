@@ -50,7 +50,7 @@ function IsImageValid(image)
     const urlExtension = match && match[1] ? match[1].toLowerCase() : '';
 
     if (!(image.startsWith('data:image/')) && !(validImageExtensions.includes(urlExtension))) {
-
+        // If it's a data URL, consider it valid
         console.log('The URL is a valid image data URL. Continuing with additional code...');
         alert('Enter Valid Image URL!');
         return false;
