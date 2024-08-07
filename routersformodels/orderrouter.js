@@ -174,4 +174,32 @@ router.post('/getOrders', async (req, res) => {
     }
 });
 
+
+router.post('/deleteorder', async (req, res) => {
+    const { orderid } = req.body;
+
+    console.log("Received Delete Order request:", req.body);
+
+    try {
+        
+        const order = await Order.findOne({_id: orderid});
+        if(!order)
+        {
+            console.log("Order not exists:", orderid);
+            return res.status(422).json({ error: "Order not found" });
+        }
+        const user = await User.findOne({email: order.useremail});
+        if (user) {
+            index = user.orders.findIndex((element) => element.toString() === orderid);
+            user.orders.splice(index,1);
+        }
+        await Order.deleteOne({_id: orderid});
+        await user.save();
+        console.log("Order was Deleted successfully:", user);
+        return res.status(201).json({ message: "Order Deleted successfully!!" });
+    } catch (error) {
+        console.error("Error during Deleting Order product:", error);
+        return res.status(500).json({ error: 'Server error' });
+    }
+})
 module.exports = router;
