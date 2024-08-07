@@ -13,12 +13,12 @@ body {
     background-color: #f7f7f7;
     margin: 0;
     padding: 0;
-    display: flex;
+    /* display:flex; */
     flex-direction: column;
     align-items: center;
     color: #42424A;
     overflow-x: hidden;
-    padding-top: 80%;
+    
 }
 
 header {
@@ -32,6 +32,22 @@ header {
     top: 0;
     background-color: #fff; /* Background color to make it visible */
     z-index: 1000; /* Higher z-index to stay above other elements */
+   
+}
+#Accessories{
+    padding-top: 220px;
+}
+#Drums{
+    padding-top: 220px;
+}
+#Guitar_Bass{
+    padding-top: 220px;
+}
+#Keys{
+    padding-top: 220px;
+}
+#Microphones{
+    padding-top: 220px;
 }
 
 header ul {
@@ -64,27 +80,6 @@ header ul li a:hover {
     color: #ff8a00;
 }
 
-header .submenu {
-    display: none; /* Initially hidden */
-    position: absolute;
-    top: 100%; /* Positioned right below the parent li */
-    left: 0;
-    width: 200px;
-    background-color: #ffffff;
-    box-shadow: 0 20px 45px rgba(0, 0, 0, 0.2);
-    z-index: 99;
-}
-
-header ul .submenu {
-    position: absolute;
-    width: 200px;
-    background-color: #ffffff;
-    box-shadow: 0 20px 45px rgba(0, 0, 0, 0.2);
-    margin-top: -50px;
-    opacity: 0;
-    z-index: -999;
-    transition: all ease 0.5s;
-}
 
 header ul li:hover .submenu {
     display: block; /* Show on hover */

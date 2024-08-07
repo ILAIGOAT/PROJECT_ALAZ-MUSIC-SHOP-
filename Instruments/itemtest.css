@@ -7,11 +7,11 @@ body {
     margin: 0;
     padding: 0;
     display: flex;
-    justify-content: center;
     align-items: center;
     height: 100vh;
     overflow-x: hidden; /* Added from the previous provided CSS */
     color: #42424A; /* Added from the previous provided CSS */
+    justify-content: space-between;
 }
 
 .container {
@@ -24,6 +24,8 @@ body {
     display: flex;
     flex-direction: column;
     margin: auto; /* Ensure the container is centered */
+    margin-bottom: 10px;
+    
 }
 
 .item {
