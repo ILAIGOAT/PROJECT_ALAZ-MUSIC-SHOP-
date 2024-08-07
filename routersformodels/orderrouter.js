@@ -111,5 +111,66 @@ router.get('/order-heatmap', async (req, res) => {
     } catch (err) {
         res.status(500).json({ message: err.message });
     }
-})
+});
+router.post('/getOrders', async (req, res) => {
+    const { email } = req.body;
+    let ids = '';
+    let addresses = '';
+    let carts = '';
+    let cartAmounts = '';
+    let totalPrices ='';
+    let emails = '';
+    let dates ='';
+
+    console.log("Received get cart request with body:", req.body);
+
+    try {
+        const user = await User.findOne({ email });
+        if (!user) {
+            console.log("User not found with email:", email);
+            return res.status(400).json({ error: "User not found" });
+        }
+
+        console.log("User found:", user);
+
+        for (let i = 0; i < user.orders.length; i++) {
+            const OrderId = user.orders[i];
+            console.log(`Looking for Order with ID: ${OrderId}`);
+            const order = await Order.findOne({ _id: OrderId });
+            if (order) {
+                console.log(`Order found: ${order}`);
+                ids+= `~${order._id}`;
+                addresses+= `~${order.address}`;
+                carts+= `~${order.cart}`;
+                cartAmounts+= `~${order.cartAmounts}`;
+                totalPrices+= `~${order.totalprice}`;
+                emails += `~${order.useremail}`;
+                dates += `~${order.date}`;
+            } else {
+                console.log(`Order not found for ID: ${OrderId}`);
+            }
+        }
+
+        console.log("Completed order lookup");
+
+        const response = {
+            msg: "Sending cart items",
+            ids, 
+            addresses,
+            carts,
+            cartAmounts,
+            totalPrices,
+            emails, 
+            dates
+        };
+
+        console.log("Sending response:", response);
+
+        return res.status(200).json(response);
+    } catch (error) {
+        console.error("Error during getOrders:", error);
+        return res.status(500).json({ error: 'Server error' });
+    }
+});
+
 module.exports = router;
