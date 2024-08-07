@@ -1,12 +1,8 @@
 function AddProduct(){
     const productname = document.getElementById("productname").value;
-    const productdescription = document.getElementById("productscript").value;
-    const productcolor = document.getElementById("productcolor").value;
     const productprice = document.getElementById("productprice").value;
     const instrumenttype = document.getElementById("Instruments-Select").value;
     const productimg = document.getElementById("productimg").value;
-    if(!(IsColorValid(productcolor)))
-        return alert('Color Is Not a valid Hex Color!');
     if(!(IsNumberValid(productprice)))
         return alert('Price Isnt Valid Price!');
     if(instrumenttype === "")
@@ -21,8 +17,6 @@ function AddProduct(){
         },
         body: JSON.stringify({
             name: productname,
-            script: productdescription,
-            color: productcolor,
             price: productprice,
             instrumenttype,
             img: productimg
@@ -42,10 +36,6 @@ function AddProduct(){
     });
 
 
-}
-function IsColorValid(color)
-{
-    return /^#[0-9A-F]{6}$/i.test(color);
 }
 function IsNumberValid(number)
 {

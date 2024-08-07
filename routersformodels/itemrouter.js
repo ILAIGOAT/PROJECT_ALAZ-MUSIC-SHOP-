@@ -4,7 +4,7 @@ var router = express.Router();
 const bcrypt = require('bcrypt');
 
 router.post('/addproduct', async (req, res) => {
-    const { name, script, color, price, instrumenttype, img } = req.body;
+    const { name, price, instrumenttype, img } = req.body;
 
     console.log("Received add product request:", req.body);
 
@@ -17,8 +17,6 @@ router.post('/addproduct', async (req, res) => {
 
         const item = new Item({
             name,
-            script,
-            color,
             price,
             instrumenttype,
             img

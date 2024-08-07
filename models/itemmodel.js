@@ -12,7 +12,7 @@ const Item = new Schema(
         },
         color:{
             type:String,
-            required: true
+            required: false
         },
         price:{
             type: mongoose.Types.Decimal128,
