@@ -77,7 +77,7 @@
                 .range([0, width - margin.left - margin.right]);
 
             const y = d3.scaleLinear()
-                .domain([0, d3.max(data, d => Math.ceil(d.count))])  // Use Math.ceil to avoid fractional values
+                .domain([0, d3.max(data, d => Math.ceil(d.count))]) 
                 .nice()
                 .range([height - margin.top - margin.bottom, 0]);
 
@@ -112,7 +112,7 @@
                 .attr("class", "axis-label")
                 .text("Number of Orders");
 
-            // Tooltip
+            
             const tooltip = d3.select(".tooltip");
 
             svg.selectAll("circle")

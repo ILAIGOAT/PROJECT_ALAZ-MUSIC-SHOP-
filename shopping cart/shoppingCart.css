@@ -1,4 +1,4 @@
-/* Body styles */
+
 html,
 body {
   padding: 10px;
@@ -7,7 +7,7 @@ body {
   font-family: 'Roboto', sans-serif;
 }
 
-/* Shopping cart title */
+
 .title {
   height: 60px;
   border-bottom: 1px solid #E1E8EE;
@@ -18,20 +18,20 @@ body {
   text-align: center;
 }
 
-/* Shopping cart container */
+
 .shopping-cart {
   margin: 80px auto;
   padding: 20px;
   max-width: 800px;
 }
 
-/* Item list styles */
+
 #items {
   list-style-type: none;
   padding: 0;
 }
 
-/* Item styles */
+
 .item {
   padding: 20px 30px;
   height: 120px;
@@ -40,12 +40,12 @@ body {
   align-items: center;
 }
 
-/* Specific item styles for nth-child(3) */
+
 .item:nth-child(3) {
   border-top: 1px solid #E1E8EE;
 }
 
-/* Buttons - Delete and Like */
+
 .buttons {
   position: relative;
   padding-top: 30px;
@@ -88,12 +88,12 @@ body {
   100% { background-position: right; }
 }
 
-/* Product Image */
+
 .image {
   margin-right: 50px;
 }
 
-/* Product Description */
+
 .description {
   padding-top: 10px;
   margin-right: 60px;
@@ -111,14 +111,14 @@ body {
   margin-bottom: 5px;
 }
 
-/* Product Quantity */
+
 .quantity {
   margin-right: 60px;
   
 }
 
 
-/* Item Price */
+
 .total-price {
   width: 83px;
   text-align: center;
@@ -127,7 +127,7 @@ body {
   font-weight: 300;
 }
 
-/* Remove button styles */
+
 .remove-btn {
   background-color: #fa0a0a;
   color: white;
@@ -145,20 +145,20 @@ body {
   background-color: #cf0000;
 }
 
-/* Card styles */
+
 .card {
   color: #5E6977;
   font-size: 18px;
   font-weight: 350;
 }
 
-/* Summary */
+
 .mb-0 {
   font-size: 18px;
   font-weight: 350;
 }
 
-/* Responsive styles */
+
 @media (max-width: 800px) {
   .shopping-cart {
     width: 100%;
@@ -185,7 +185,7 @@ body {
   }
 }
 
-/* Button focus styles */
+
 button:focus,
 input:focus {
   outline: 0;
