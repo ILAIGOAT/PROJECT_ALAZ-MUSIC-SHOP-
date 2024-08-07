@@ -38,6 +38,8 @@ body {
 
 .item-image {
     margin: 10px;
+    max-width: 281px;
+
 }
 
 .item-image img {
