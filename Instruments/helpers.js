@@ -62,5 +62,6 @@ rangeInput.forEach(input =>{
 });
 function refresh()
 {
-    location.reload();
+    document.getElementById(sessionStorage.getItem("lastCate")).innerHTML = "";
+    receiveCateItems(sessionStorage.getItem("lastCate"));
 }

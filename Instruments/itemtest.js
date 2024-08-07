@@ -11,6 +11,7 @@ function receiveCateItems(Category) {
     min = document.getElementById("min").value;
     max = document.getElementById("max").value;
     let targetContainer = document.getElementById(Category);
+    sessionStorage.setItem("lastCate",Category);
     console.log(min,max);
 
     fetch('http://localhost:88/item/getCategoryItems', {
