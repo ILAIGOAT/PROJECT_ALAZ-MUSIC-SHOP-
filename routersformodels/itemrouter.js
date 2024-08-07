@@ -32,6 +32,7 @@ router.post('/addproduct', async (req, res) => {
         return res.status(500).json({ error: 'Server error' });
     }
 });
+
 router.post('/getCategoryItems', async (req, res) => {
     const { Category } = req.body;
     let names = '';
@@ -44,7 +45,7 @@ router.post('/getCategoryItems', async (req, res) => {
 
     try {
         // Query the database to find all items with the specified category
-        const cursor = db.items.find({ instrumenttype: Category });
+        const cursor = Item.find({ instrumenttype: Category });
 
         let foundAny = false;
 
@@ -55,7 +56,7 @@ router.post('/getCategoryItems', async (req, res) => {
             names += `~${item.name}`;
             prices += `~${item.price}`;
             colors += `~${item.color}`;
-            imgs += `~${item.img}`;
+            imgs += ` ${item.img}`;
             ids += `~${item._id}`;
         }
 

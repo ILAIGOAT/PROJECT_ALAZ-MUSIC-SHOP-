@@ -1,13 +1,8 @@
 
-function additem(name,price,img,color,id){
-    var ul = document.getElementById("items");
-    var li = document.createElement("li");
-    price = Number(price);
-    amount = Number(amount);
-    li.innerHTML = '<div class=\"item\"><div class=\"buttons\"><span class=\"delete-btn\"></span><span class=\"like-btn\"></span></div><div class=\"image\"><img src=\"' + img + '\" alt=\"\" class=\"itemImg\" /></div><div class=\"description\"><span>' + name + '</span><span></span></div><div class=\"quantity\"><span>'+  amount +'</span></div><div class=\"total-price\">' + price * amount + '₪</div><button class=\"remove-btn\" data-id=\"'+id +'\">Remove from Cart</button></div>';
-    ul.appendChild(li);
+function additem(name,price,img,color,id,addTo){
+    let HTMLtoAdd = '<div class=\"container\"><div class=\"item\"><div class=\"item-image\"><img src=\"'+ img +'" alt=\"Item Image\"></div><div class=\"item-details\"><div><p>'+name+'</p></div><div><p class=\"item-description\">Item description</p></div><div class=\"color-option\"><span class=\"color\">Color:</span><div class=\"circles\"><span class=\"circle blue active\" id=\"blue\"></span></div></div><div class=\"quantity\"><button class=\"plus-btn\" type=\"button\" name=\"button\" id=\"plus-btn\" onclick=\"IncreamentQuantity()\"><img src=\"../shopping cart/plus-lg.svg\" alt=\"\"></button><input type=\"text\" id=\"quanumber\" name=\"name\" value=\"1\" min=\"1\"><button class=\"minus-btn\" type=\"button\" name=\"button\" id=\"minus-btn\" onclick=\"DecreamentQuantity()\"><img src=\"../shopping cart/dash.svg\" alt=\"\"></button></div><div class=\"item-price\"><input id=\"price\" type=\"hidden\" value=\"'+ price +'\"><p id=\"updatedprice\">₪' + price +  '</p></div><button class=\"add-to-cart-btn\" data-id="'+ id +'"onclick=\"addToCart()\">Add to Cart</button></div></div></div>'
+    addTo.insertAdjacentHTML('beforeend',  HTMLtoAdd);
 }
-
 
 function addToCart() {
     alert('Item added to cart!');
@@ -25,21 +20,19 @@ let circle = document.querySelector(".color-option");//for the colors
 });
 
 function receiveCartItems(Category) {
-        
     console.log("Sending get category items request");
+    // Use a specific container instead of event.target
+    let targetContainer = document.getElementById(Category);
 
-    fetch('http://localhost:88/user/getCategoryItems', {
+    fetch('http://localhost:88/item/getCategoryItems', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
         },
         body: JSON.stringify({ Category })
     })
+    .then(res => res.json())
     .then(res => {
-        return res.json();
-    })
-    .then(res => {
-
         if (res.error) {
             alert(res.error);
             console.log("Category Display error:", res.error);
@@ -47,31 +40,22 @@ function receiveCartItems(Category) {
         } else if (res.msg) {
             console.log("Category Display successful:", res);
 
-            sessionStorage.setItem('CatgoryItemNames', JSON.stringify((res.names).split("~").filter(word => word !== "")));
-            console.log("Names Are: ", sessionStorage.getItem("CartItemNames"))
-            // sessionStorage.setItem('CartItemColors', JSON.stringify((res.colors).split("~").filter(word => word !== "")));
-            sessionStorage.setItem('CatgoryItemPrices', JSON.stringify((res.prices).split("~").filter(word => word !== "")));
-            console.log("Names Are: ", sessionStorage.getItem("CartItemPrices"))
-            // sessionStorage.setItem('CartItemInstrumenttypes', JSON.stringify((res.instrumenttypes).split("~").filter(word => word !== "")));
-            sessionStorage.setItem('CatgoryItemImgs', JSON.stringify((res.imgs).split(" ").filter(word => word !== "")));
-            console.log("Names Are: ", sessionStorage.getItem("CartItemImgs"))
-            sessionStorage.setItem('CatgoryItemColors', JSON.stringify((res.amounts).split("~").filter(word => word !== "")));
-            console.log("Names Are: ", sessionStorage.getItem("CartItemAmounts"))
-            sessionStorage.setItem('CatgoryItemIds', JSON.stringify((res.ids).split(" ").filter(word => word !== "")));
+            sessionStorage.setItem('CategoryItemNames', JSON.stringify(res.names.split("~").filter(word => word !== "")));
+            sessionStorage.setItem('CategoryItemPrices', JSON.stringify(res.prices.split("~").filter(word => word !== "")));
+            sessionStorage.setItem('CategoryItemImgs', JSON.stringify(res.imgs.split(" ").filter(word => word !== "")));
+            sessionStorage.setItem('CategoryItemColors', JSON.stringify(res.colors.split("~").filter(word => word !== "")));
+            sessionStorage.setItem('CategoryItemIds', JSON.stringify(res.ids.split(" ").filter(word => word !== "")));
 
             let names = JSON.parse(sessionStorage.getItem('CategoryItemNames'));
-            // let colors = JSON.parse(sessionStorage.getItem('CartItemColors'));
-            let prices = JSON.parse(sessionStorage.getItem('CategoryItemPrices'));
-            // let instrumenttypes = JSON.parse(sessionStorage.getItem('CartItemInstrumenttypes'));
-            let imgs = JSON.parse(sessionStorage.getItem('CategoryItemImgs'));
             let colors = JSON.parse(sessionStorage.getItem('CategoryItemColors'));
+            let prices = JSON.parse(sessionStorage.getItem('CategoryItemPrices'));
+            let imgs = JSON.parse(sessionStorage.getItem('CategoryItemImgs'));
             let ids = JSON.parse(sessionStorage.getItem('CategoryItemIds'));
 
             for (let i = 0; i < names.length; i++) {
                 console.log(names[i]);
-                additem(names[i], prices[i], imgs[i], colors[i],ids[i]);
+                additem(names[i], prices[i], imgs[i], colors[i], ids[i], targetContainer);
             }
-
         }
     })
     .catch(error => {
