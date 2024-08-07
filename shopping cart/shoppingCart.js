@@ -90,7 +90,7 @@ function resiveCartItems() {
             var totalPrice = 0;
             for (let i = 0; i < names.length; i++) {
                 console.log(names[i]);
-                additem(names[i], (prices[i]).toFixed(2), imgs[i], amounts[i],ids[i]);
+                additem(names[i], (Number(prices[i])).toFixed(2), imgs[i], amounts[i],ids[i]);
                 totalPrice += Number(prices[i])*Number(amounts[i]);
             }
             var PriceToChange = document.getElementById("totalPrice");

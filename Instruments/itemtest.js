@@ -1,12 +1,10 @@
 
 function additem(name,price,img,color,id,addTo,Index){
-    let HTMLtoAdd = '<div class=\"container\"><div class=\"item\"><div class=\"item-image\"><img src=\"'+ img +'" alt=\"Item Image\"></div><div class=\"item-details\"><div><p>'+name+'</p></div><div></div><div class=\"color-option\"><span class=\"color\"></span><div class=\"circles\"></div></div><div class=\"quantity\"><button class=\"plus-btn\" type=\"button\" name=\"button\" id=\"plus-btn\" onclick=\"IncreamentQuantity('+ Index +')\"><img src=\"../shopping cart/plus-lg.svg\" alt=\"\"></button><input type=\"text\" id=\"quanumber'+ Index +'\" name=\"name\" value=\"1\" min=\"1\"><button class=\"minus-btn\" type=\"button\" name=\"button\" id=\"minus-btn\" onclick=\"DecreamentQuantity('+ Index +')\"><img src=\"../shopping cart/dash.svg\" alt=\"\"></button></div><div class=\"item-price\"><input id=\"price' + Index +'\" type=\"hidden\" value=\"'+ price +'\"><p id=\"updatedprice'+ Index +'\">₪' + price +  '</p></div><button class=\"add-to-cart-btn\" data-id="'+ id +'"onclick=\"addToCart()\">Add to Cart</button></div></div></div>'
+    let HTMLtoAdd = '<div class=\"container\"><div class=\"item\"><div class=\"item-image\"><img src=\"'+ img +'" alt=\"Item Image\"></div><div class=\"item-details\"><div><p>'+name+'</p></div><div></div><div class=\"color-option\"><span class=\"color\"></span><div class=\"circles\"></div></div><div class=\"quantity\"><button class=\"plus-btn\" type=\"button\" name=\"button\" id=\"plus-btn\" onclick=\"IncreamentQuantity('+ Index +')\"><img src=\"../shopping cart/plus-lg.svg\" alt=\"\"></button><input type=\"text\" id=\"quanumber'+ Index +'\" name=\"name\" value=\"1\" min=\"1\"><button class=\"minus-btn\" type=\"button\" name=\"button\" id=\"minus-btn\" onclick=\"DecreamentQuantity('+ Index +')\"><img src=\"../shopping cart/dash.svg\" alt=\"\"></button></div><div class=\"item-price\"><input id=\"price' + Index +'\" type=\"hidden\" value=\"'+ price +'\"><p id=\"updatedprice'+ Index +'\">₪' + price +  '</p></div><button class=\"add-to-cart-btn\" data-id="'+ id +'"onclick=\"addToCart(event,'+Index+')\">Add to Cart</button></div></div></div>'
     addTo.insertAdjacentHTML('beforeend',  HTMLtoAdd);
 }
 
-function addToCart() {
-    alert('Item added to cart!');
-}
+
 
 function receiveCartItems(Category) {
     console.log("Sending get category items request");
@@ -33,7 +31,7 @@ function receiveCartItems(Category) {
             sessionStorage.setItem('CategoryItemPrices', JSON.stringify(res.prices.split("~").filter(word => word !== "")));
             sessionStorage.setItem('CategoryItemImgs', JSON.stringify(res.imgs.split(" ").filter(word => word !== "")));
             sessionStorage.setItem('CategoryItemColors', JSON.stringify(res.colors.split("~").filter(word => word !== "")));
-            sessionStorage.setItem('CategoryItemIds', JSON.stringify(res.ids.split(" ").filter(word => word !== "")));
+            sessionStorage.setItem('CategoryItemIds', JSON.stringify(res.ids.split("~").filter(word => word !== "")));
 
             let names = JSON.parse(sessionStorage.getItem('CategoryItemNames'));
             let colors = JSON.parse(sessionStorage.getItem('CategoryItemColors'));

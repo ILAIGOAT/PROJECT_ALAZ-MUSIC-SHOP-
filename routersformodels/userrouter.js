@@ -323,4 +323,34 @@ router.post('/takeadmin', async (req,res) => {
         return res.status(500).json({ error: 'Server error'});
     }
 })
+
+router.post('/addtocart', async (req,res) => {
+    const { email, ItemId, Amount } = req.body;
+
+    console.log("Add Item to cart request:", req.body);
+
+    try{
+        const item = await Item.findOne({ _id: ItemId });
+        if(!item){
+            console.log("Item not found:", ItemId);
+            return res.status(400).json({ error: "item not found" });
+        }
+        const user = await User.findOne({ email });
+        if(!user)
+        {
+            console.log("User not found:", email);
+            return res.status(400).json({ error: "user not found" });
+        }
+
+        user.cart.push(item);
+        user.cartAmounts.push(Amount);
+        await user.save();
+        
+        console.log("Item Was Added for:", email);
+        return res.status(200).json({ message: "Item was added to cart"});
+    } catch(error){
+        console.error("Error adding new item:", error);
+        return res.status(500).json({ error: 'Server error'});
+    }
+})
 module.exports = router;
