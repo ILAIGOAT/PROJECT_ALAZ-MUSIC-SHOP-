@@ -193,7 +193,7 @@ router.post('/deleteorder', async (req, res) => {
             index = user.orders.findIndex((element) => element.toString() === orderid);
             user.orders.splice(index,1);
         }
-        await Order.deleteOne({_id: orderid});
+        await Order.deleteOne({_id: order._id});
         await user.save();
         console.log("Order was Deleted successfully:", user);
         return res.status(201).json({ message: "Order Deleted successfully!!" });
