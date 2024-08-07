@@ -12,7 +12,8 @@ body {
     
     overflow-x: hidden;
     color: #42424A;
-    background: url(fotor-ai-20240806183841.jpg);
+    background: #FFF882; 
+    background: linear-gradient(270deg, #FFF882, #FFE1BB);
     background-size: auto;
     background-repeat: no-repeat;
     width: 100%;
