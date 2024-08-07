@@ -5,7 +5,13 @@
     var useremail = document.getElementById("up-Email").value;
     var username = document.getElementById("up-Username").value;
     var pass = document.getElementById("up-Password").value;
-
+    if(!(isValidEmail(useremail)))
+        return alert('Enter Valid Email!');
+    if(username === "")
+        return alert('Enter Username!');
+    if(pass === "")
+        return alert('Enter Password!');
+    
     console.log("Sending registration request");
 
     fetch('http://localhost:88/user/register', {
@@ -35,6 +41,13 @@
     document.getElementById("up-Password").value = "";
 }
 
+function isValidEmail(email) {
+    // Define the regular expression for validating an email
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+    // Test the email against the regular expression
+    return emailRegex.test(email);
+}
 
 /*export*/ function loginUser() {
     var useremail = document.getElementById("login-Email").value;

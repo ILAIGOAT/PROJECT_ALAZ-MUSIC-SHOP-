@@ -13,6 +13,7 @@ body {
     overflow-x: hidden;
     color: #42424A;
     background-image: url(../HomePage/fotor-ai-20240806183841.jpg);
+    background-repeat:no-repeat;
     
 }
 header {
@@ -23,8 +24,12 @@ header {
     padding: 0 50px; /* Adjusted padding */
     border-bottom: 1px solid #dbdbdb;
     background-color: white;
-    border-radius: 5px;
+    border-radius: 177px;
     
+}
+main{
+    position: absolute;/**/
+    margin-left: 425px;/**/
 }
 header ul {
     display: flex;
