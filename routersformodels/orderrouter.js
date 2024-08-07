@@ -112,6 +112,7 @@ router.get('/order-heatmap', async (req, res) => {
         res.status(500).json({ message: err.message });
     }
 });
+
 router.post('/getOrders', async (req, res) => {
     const { email } = req.body;
     let ids = '';
@@ -132,29 +133,29 @@ router.post('/getOrders', async (req, res) => {
         }
 
         console.log("User found:", user);
+        
+        let orders;
+        if (user.admin) {
+            orders = await Order.find();
+        } else {
+            orders = await Order.find({ _id: { $in: user.orders } });
+        }
 
-        for (let i = 0; i < user.orders.length; i++) {
-            const OrderId = user.orders[i];
-            console.log(`Looking for Order with ID: ${OrderId}`);
-            const order = await Order.findOne({ _id: OrderId });
-            if (order) {
-                console.log(`Order found: ${order}`);
-                ids+= `~${order._id}`;
-                addresses+= `~${order.address}`;
-                carts+= `~${order.cart}`;
-                cartAmounts+= `~${order.cartAmounts}`;
-                totalPrices+= `~${order.totalprice}`;
-                emails += `~${order.useremail}`;
-                dates += `~${order.date}`;
-            } else {
-                console.log(`Order not found for ID: ${OrderId}`);
-            }
+        for (const order of orders) {
+            console.log(`Order found: ${order}`);
+            ids += `~${order._id}`;
+            addresses += `~${order.address}`;
+            carts += `~${order.cart}`;
+            cartAmounts += `~${order.cartAmounts}`;
+            totalPrices += `~${order.totalprice}`;
+            emails += `~${order.useremail}`;
+            dates += `~${order.date}`;
         }
 
         console.log("Completed order lookup");
 
         const response = {
-            msg: "Sending cart items",
+            msg: "Sending Orders",
             ids, 
             addresses,
             carts,

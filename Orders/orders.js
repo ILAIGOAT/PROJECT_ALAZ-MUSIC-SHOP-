@@ -53,7 +53,7 @@ function getOrders(){
             let dates = JSON.parse(sessionStorage.getItem('OrderDates'));
             console.log("is" + dates);
 
-            for (let i = 0; i < ids.length; i++) {
+            for (let i = ids.length - 1; i >= 0; i--) {
                 console.log(carts[i]);
                 addOrderDisplay(ids[i], addresses[i], carts[i], cartAmounts[i], totalPrices[i],emails[i],dates[i]);
             }
