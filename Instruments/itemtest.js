@@ -8,8 +8,8 @@ function additem(name,price,img,color,id,addTo,Index){
 
 function receiveCateItems(Category) {
     console.log("Sending get category items request");
-    min = document.getElementById("min").value;
-    max = document.getElementById("max").value;
+    min = sessionStorage.getItem("lastMin");
+    max = sessionStorage.getItem("lastMax")
     let targetContainer = document.getElementById(Category);
     console.log(min,max);
 
@@ -23,7 +23,6 @@ function receiveCateItems(Category) {
     .then(res => res.json())
     .then(res => {
         if (res.error) {
-            alert(res.error);
             console.log("Category Display error:", res.error);
             window.location.href = "/HomePage/index.html";
         } else if (res.msg) {
