@@ -1,5 +1,7 @@
 function addToCart(event,Index)
 {
+    if(!(sessionStorage.getItem('userConnected') === 'true'))
+        return alert('You Have to Sign In To The Site In Order To Add Items To Cart!!, You Can Sign In By Clicking The Shopping Cart Or VIA HomePage');
     var targetElement = event.target;
     ItemId =  targetElement.getAttribute("data-id");
     Amount = document.getElementById("quanumber" + Index).value;

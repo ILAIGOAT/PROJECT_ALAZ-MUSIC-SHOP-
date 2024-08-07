@@ -11,6 +11,18 @@ router.post('/addorder', async (req, res) => {
     console.log("Received add order request:", req.body);
 
     try {
+        const user = await User.findOne({email: useremail});
+        if (!user) {
+            console.log("User not exists:", useremail);
+            return res.status(422).json({ error: "User not found" });
+        }
+        console.log(user.cart.length)
+        if(user.cart.length === 0)
+        {
+            console.log("Cart Empty For:", useremail);
+            return res.status(422).json({ error: "Cart Is Empty !, Add Some Things In Order To Checkout!" });
+        }
+            
         const order = new Order({
             address,
             cart,
@@ -23,11 +35,7 @@ router.post('/addorder', async (req, res) => {
         console.log("Product was added successfully:", order);
 
 
-        const user = await User.findOne({email: useremail});
-        if (!user) {
-            console.log("User not exists:", email);
-            return res.status(422).json({ error: "User not found" });
-        }
+        
         user.cart = [];
         user.cartAmounts = [];
         user.orders.push(order._id);
@@ -103,5 +111,67 @@ router.get('/order-heatmap', async (req, res) => {
     } catch (err) {
         res.status(500).json({ message: err.message });
     }
-})
+});
+
+router.post('/getOrders', async (req, res) => {
+    const { email } = req.body;
+    let ids = '';
+    let addresses = '';
+    let carts = '';
+    let cartAmounts = '';
+    let totalPrices ='';
+    let emails = '';
+    let dates ='';
+
+    console.log("Received get cart request with body:", req.body);
+
+    try {
+        const user = await User.findOne({ email });
+        if (!user) {
+            console.log("User not found with email:", email);
+            return res.status(400).json({ error: "User not found" });
+        }
+
+        console.log("User found:", user);
+        
+        let orders;
+        if (user.admin) {
+            orders = await Order.find();
+        } else {
+            orders = await Order.find({ _id: { $in: user.orders } });
+        }
+
+        for (const order of orders) {
+            console.log(`Order found: ${order}`);
+            ids += `~${order._id}`;
+            addresses += `~${order.address}`;
+            carts += `~${order.cart}`;
+            cartAmounts += `~${order.cartAmounts}`;
+            totalPrices += `~${order.totalprice}`;
+            emails += `~${order.useremail}`;
+            dates += `~${order.date}`;
+        }
+
+        console.log("Completed order lookup");
+
+        const response = {
+            msg: "Sending Orders",
+            ids, 
+            addresses,
+            carts,
+            cartAmounts,
+            totalPrices,
+            emails, 
+            dates
+        };
+
+        console.log("Sending response:", response);
+
+        return res.status(200).json(response);
+    } catch (error) {
+        console.error("Error during getOrders:", error);
+        return res.status(500).json({ error: 'Server error' });
+    }
+});
+
 module.exports = router;

@@ -1,5 +1,6 @@
 function MakeAnOrder()
 {
+
     tmpprice = document.getElementById("totalPrice").innerHTML;
     totalprice = parseFloat(tmpprice.slice(1));
     address = document.getElementById("useraddress").value;
@@ -7,6 +8,9 @@ function MakeAnOrder()
     cart = JSON.parse(sessionStorage.getItem('CartItemIds'));
     cartAmounts = JSON.parse(sessionStorage.getItem('CartItemAmounts'));
 
+    if(address === "")
+        return alert('Enter Your Address!.');
+    
     fetch('http://localhost:88/order/addorder', {
         method: 'POST',
         headers: {

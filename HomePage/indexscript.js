@@ -2,6 +2,7 @@
 if(!(sessionStorage.getItem('userConnected') === 'true')){
   document.getElementById("open").href = "#";
   document.getElementById("settings").href = "#";
+  document.getElementById("orders").href = "#";
   document.getElementById("open").addEventListener("click", function(){
       document.getElementsByClassName("popup")[0].classList.add("active");
   });
@@ -19,6 +20,8 @@ if(!(sessionStorage.getItem('userConnected') === 'true')){
 else{
   document.getElementById("open").href = "../shopping cart/shoppingCart.html";
   document.getElementById("settings").href = "../Settings/Settings.html";
+  document.getElementById("orders").href = "../Orders/orders.html";
+
 }
 
 
