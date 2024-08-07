@@ -3,7 +3,7 @@ function additem(name,price,img,amount,id){
     var li = document.createElement("li");
     price = Number(price);
     amount = Number(amount);
-    li.innerHTML = '<div class=\"item\"><div class=\"buttons\"><span class=\"delete-btn\"></span><span class=\"like-btn\"></span></div><div class=\"image\"><img src=\"' + img + '\" alt=\"\" class=\"itemImg\" /></div><div class=\"description\"><span>' + name + '</span><span></span></div><div class=\"quantity\"><span>'+  amount +'</span></div><div class=\"total-price\">' + price * amount + '₪</div><button class=\"remove-btn\" data-id=\"'+id +'\">Remove from Cart</button></div>';
+    li.innerHTML = '<div class=\"item\"><div class=\"buttons\"><span class=\"delete-btn\"></span><span class=\"like-btn\"></span></div><div class=\"image\"><img src=\"' + img + '\" alt=\"\" class=\"itemImg\" /></div><div class=\"description\"><span>' + name + '</span><span></span></div><div class=\"quantity\"><span>'+  amount +'</span></div><div class=\"total-price\">' + (price * amount).toFixed(2) + '₪</div><button class=\"remove-btn\" data-id=\"'+id +'\">Remove from Cart</button></div>';
     ul.appendChild(li);
 }
 $('.minus-btn').on('click', function(e) {
@@ -95,8 +95,8 @@ function resiveCartItems() {
             }
             var PriceToChange = document.getElementById("totalPrice");
             var PriceToChange2 = document.getElementById("productsPrice");
-            PriceToChange.innerHTML = "₪" + totalPrice;
-            PriceToChange2.innerHTML = "₪" + totalPrice;
+            PriceToChange.innerHTML = "₪" + totalPrice.toFixed(2);
+            PriceToChange2.innerHTML = "₪" + totalPrice.toFixed(2);
 
         }
     })

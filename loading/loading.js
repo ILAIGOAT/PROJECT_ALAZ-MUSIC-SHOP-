@@ -1,5 +1,5 @@
 function redirect(){
-    let time = Math.random() * (5 - 1) + 1;
+    let time = Math.random() * (4 - 1) + 1;
     let timeout = setTimeout(category,time * 1000);
     
 }

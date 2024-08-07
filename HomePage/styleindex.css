@@ -31,10 +31,12 @@ header {
     background-color: white;
     border-radius: 177px;
     
+    
 }
 main{
     position: absolute;/**/
     margin-left: 170px;/**/
+    
 }
 header ul {
     display: flex;
@@ -310,7 +312,7 @@ header #open i{
     align-items: center;
     font-family: 'Poppins', sans-serif;
     font-weight: bold;
-    color: #ffffff;
+    color: #000000;
     font-size: 30px;
 }
 .StateOfUsername{
@@ -320,3 +322,20 @@ header #open i{
 }
 
 
+.styled-video {
+    width: 80%;
+    max-width: 500px;
+    border: 5px solid; /* Border color */
+    border-radius: 25px; /* Rounded corners */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Shadow for a 3D effect */
+    overflow: hidden; /* Ensures the video stays within rounded corners */
+    display: block; /* Ensures the video is treated as a block element */
+}
+
+#Welcome{
+    align-items: center;
+    font-family: 'Poppins', sans-serif;
+    font-weight: bold;
+    color: #252525;
+    font-size: 70px;
+}
