@@ -1,3 +1,6 @@
+sessionStorage.setItem("lastMin",0);
+sessionStorage.setItem("lastMax",20000);
+
 function UpdateCategoryLine(event){
     var targetElement = event.target;
     
@@ -62,5 +65,7 @@ rangeInput.forEach(input =>{
 });
 function refresh()
 {
+    sessionStorage.setItem("lastMin",document.getElementById("min"));
+    sessionStorage.setItem("lastMax",document.getElementById("max"));
     location.reload();
 }
