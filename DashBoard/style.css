@@ -1,0 +1,150 @@
+@import url('https://fonts.googleapis.com/css2?family=Work+Sans:ital,wght@0,100..900;1,100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    outline: none;
+}
+
+body {
+    font-family: 'Roboto', sans-serif;
+    background-color: #f7f7f7;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: #42424A;
+    overflow: hidden;
+    padding-top: 10%;
+}
+
+header {
+    width: 100%;
+    padding: 0 50px; /* Adjusted padding */
+    border-bottom: 1px solid #dbdbdb;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: fixed; /* Fixed position to keep it at the top */
+    top: 0;
+    background-color: #fff; /* Background color to make it visible */
+    z-index: 1000; /* Higher z-index to stay above other elements */
+}
+
+header ul {
+    display: flex;
+    align-items: center;
+}
+
+header ul li {
+    list-style: none;
+    margin: 0 20px; /* Adjusted margin */
+    position: relative; /* Added for submenu positioning */
+}
+
+header ul li:last-child {
+    margin-right: 0;
+}
+
+header ul li a {
+    text-decoration: none;
+    color: #42424a;
+    padding: 22px 0;
+    display: inline-block;
+    transition: all 0.3s ease;
+    font-size: 20px; /* Adjusted font size */
+    font-weight: bold;
+    font-family: 'Poppins', sans-serif;
+}
+
+header ul li a:hover {
+    color: #ff8a00;
+}
+
+header .submenu {
+    display: none; /* Initially hidden */
+    position: absolute;
+    top: 100%; /* Positioned right below the parent li */
+    left: 0;
+    width: 200px;
+    background-color: #ffffff;
+    box-shadow: 0 20px 45px rgba(0, 0, 0, 0.2);
+    z-index: 99;
+}
+
+header ul .submenu {
+    position: absolute;
+    width: 200px;
+    background-color: #ffffff;
+    box-shadow: 0 20px 45px rgba(0, 0, 0, 0.2);
+    margin-top: -50px;
+    opacity: 0;
+    z-index: -999;
+    transition: all ease 0.5s;
+}
+
+header ul li:hover .submenu {
+    display: block; /* Show on hover */
+    z-index: 99;
+    opacity: 1;
+    margin-top: 0;
+}
+
+header .submenu li {
+    margin: 0;
+    width: 100%;
+}
+
+header .submenu li a {
+    padding: 15px 20px;
+    display: inline-block;
+    width: 100%;
+}
+
+.hero_sec {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    height: 100vh;
+    padding-top: 120px; /* Adjust this value to position buttons closer to the top */
+}
+
+header ul li a img {
+    width: 111px;
+}
+
+header #open i {
+    font-size: 27px;
+}
+
+.buttons-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+}
+
+.styled-button {
+    padding: 15px 30px;
+    font-size: 18px;
+    font-family: 'Poppins', sans-serif;
+    color: #fff;
+    background-color: #007bff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.3s;
+}
+
+.styled-button:hover {
+    background-color: #0056b3;
+    transform: scale(1.05);
+}
+
+.styled-button:active {
+    background-color: #004085;
+    transform: scale(1);
+}

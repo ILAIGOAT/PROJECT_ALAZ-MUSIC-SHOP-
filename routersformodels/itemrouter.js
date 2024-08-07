@@ -88,5 +88,25 @@ router.post('/getCategoryItems', async (req, res) => {
     }
 });
 
+router.post('/removeproduct', async (req, res) => {
+    const { name } = req.body;
 
+    console.log("Received remove Product request:", req.body);
+
+    try {
+        const ProductExist = await Item.findOne({ name });
+        if (!ProductExist) {
+            console.log("Product doesnt exists:", name);
+            return res.status(422).json({ error: "Product Doesnt exists" });
+        }
+
+        await Item.deleteOne({name});
+        
+        console.log("Product was Deleted successfully:", name);
+        return res.status(201).json({ message: "Deleted successfully!!" });
+    } catch (error) {
+        console.error("Error during deleting new product:", error);
+        return res.status(500).json({ error: 'Server error' });
+    }
+});
 module.exports = router;
