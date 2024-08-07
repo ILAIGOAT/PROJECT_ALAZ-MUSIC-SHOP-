@@ -11,6 +11,18 @@ router.post('/addorder', async (req, res) => {
     console.log("Received add order request:", req.body);
 
     try {
+        const user = await User.findOne({email: useremail});
+        if (!user) {
+            console.log("User not exists:", useremail);
+            return res.status(422).json({ error: "User not found" });
+        }
+        console.log(user.cart.length)
+        if(user.cart.length === 0)
+        {
+            console.log("Cart Empty For:", useremail);
+            return res.status(422).json({ error: "Cart Is Empty !, Add Some Things In Order To Checkout!" });
+        }
+            
         const order = new Order({
             address,
             cart,
@@ -23,11 +35,7 @@ router.post('/addorder', async (req, res) => {
         console.log("Product was added successfully:", order);
 
 
-        const user = await User.findOne({email: useremail});
-        if (!user) {
-            console.log("User not exists:", email);
-            return res.status(422).json({ error: "User not found" });
-        }
+        
         user.cart = [];
         user.cartAmounts = [];
         user.orders.push(order._id);
