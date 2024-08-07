@@ -6,17 +6,19 @@ function additem(name,price,img,color,id,addTo,Index){
 
 
 
-function receiveCartItems(Category) {
+function receiveCateItems(Category) {
     console.log("Sending get category items request");
-    // Use a specific container instead of event.target
+    min = document.getElementById("min").value;
+    max = document.getElementById("max").value;
     let targetContainer = document.getElementById(Category);
+    console.log(min,max);
 
     fetch('http://localhost:88/item/getCategoryItems', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
         },
-        body: JSON.stringify({ Category })
+        body: JSON.stringify({ Category,min,max })
     })
     .then(res => res.json())
     .then(res => {
@@ -139,14 +141,4 @@ function UpdatePrice(times,Index)
 {
     let price = document.getElementById("price" + Index).value;
     document.getElementById("updatedprice"+ Index).innerHTML = "₪" + (price * times).toFixed(2);
-}
-
-
-function Filter()
-{
-    let names = JSON.parse(sessionStorage.getItem('CategoryItemNames'))
-    let counter = 0;
-    names.forEach(element => {
-        counter++;
-    });
 }
